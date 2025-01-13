@@ -114,11 +114,10 @@ USE_L10N = True
 USE_TZ = True
 
 # Available languages
-LANGUAGES = [
-    ('en', _('English')),
-    ('es', _('Spanish')),
-    # Add more languages as needed
-]
+LANGUAGES = (
+    ('en', 'English'),
+    ('es', 'Spanish'),
+)
 
 # Locale paths
 LOCALE_PATHS = [
@@ -140,3 +139,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Language cookie settings
+LANGUAGE_COOKIE_NAME = 'django_language'
+LANGUAGE_COOKIE_AGE = None
+LANGUAGE_COOKIE_PATH = '/'
