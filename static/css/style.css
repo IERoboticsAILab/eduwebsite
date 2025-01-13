@@ -100,3 +100,20 @@ footer {
     height: 20px;
     grid-column: 1 / -1;
 }
+
+.language-selector {
+  display: inline-block;
+  margin-left: auto;
+}
+
+.language-selector select {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+}
+
+.language-selector select:hover {
+  border-color: #999;
+}
