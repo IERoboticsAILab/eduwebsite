@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Projects{% endblock %}
 
 {% block content %}
     <h1>My Projects</h1>
-    <div class="projects-grid">
-        <!-- Add your projects here -->
-        <div class="project-card">
-            <h3>Project 1</h3>
-            <p>Project description goes here</p>
-        </div>
+
+    <div class="projects-grid"
+         hx-get="{% url 'projects' %}"
+         hx-trigger="intersect once"
+         hx-swap="outerHTML"
+         hx-target="this">
+        {% include 'main/partials/project-list.html' %}
     </div>
 {% endblock %}
