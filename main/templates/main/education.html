@@ -1,17 +1,82 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/work.css' %}">
+{% endblock %}
 
-{% block title %}About Me{% endblock %}
+{% block title %}Work{% endblock %}
 
 {% block content %}
-    <h1>About Me</h1>
-    <div class="about-content">
-        <p>Write a brief introduction about yourself here.</p>
+    <h1>Education</h1>
+    <div class="work-container">
+        <div class="experience-column">
+            <h2>Experience</h2>
+            <p>Multidisciplinary experience in several countries, such as Spain, Germany, Belgium, United Kingdom, Japan, and United States.</p>
+            <p>Leading teams and managing international projects in different areas: distributed robotics, machine learning, and artificial intelligence.</p>
+        </div>
+        <div class="accordion-column">
+            <div class="accordion">
 
-        <h2>Skills</h2>
-        <ul>
-            <li>Skill 1</li>
-            <li>Skill 2</li>
-            <li>Skill 3</li>
-        </ul>
+                <div class="accordion-item">
+                    <button class="accordion-button">Postdoctoral research affiliate - 2019 - Present</button>
+                    <div id="content1" class="accordion-content" style="display: none;">
+                        <h3>MIT Media Lab, Massachusetts Institute of Technology</h3>
+                        <p>Conduct research on how distributed robotics systems provide new ways to improve mobility, last-mile logistics, and health-related issues in urban areas. This research is conducted in the City Science group at the MIT Media Lab. </p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-button">Postdoctoral Fellow - 2019 - 2020</button>
+                    <div id="content2" class="accordion-content" style="display: none;">
+                        <h3>MIT Media Lab, Massachusetts Institute of Technology</h3>
+                        <p>Conduct research on how distributed robotics systems provide new ways to improve mobility, last-mile logistics, and health-related issues in urban areas. This research is conducted in the City Science group at the MIT Media Lab. </p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-button">Postdoctoral Fellow - 2019 - 2020</button>
+                    <div id="content3" class="accordion-content" style="display: none;">
+                        <h3>MIT Media Lab, Massachusetts Institute of Technology</h3>
+                        <p>Conduct research on how distributed robotics systems provide new ways to improve mobility, last-mile logistics, and health-related issues in urban areas. This research is conducted in the City Science group at the MIT Media Lab. </p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-button">Postdoctoral Fellow - 2019 - 2020</button>
+                    <div id="content4" class="accordion-content" style="display: none;">
+                        <h3>MIT Media Lab, Massachusetts Institute of Technology</h3>
+                        <p>Conduct research on how distributed robotics systems provide new ways to improve mobility, last-mile logistics, and health-related issues in urban areas. This research is conducted in the City Science group at the MIT Media Lab. </p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-button">Postdoctoral Fellow - 2019 - 2020</button>
+                    <div id="content5" class="accordion-content" style="display: none;">
+                        <h3>MIT Media Lab, Massachusetts Institute of Technology</h3>
+                        <p>Conduct research on how distributed robotics systems provide new ways to improve mobility, last-mile logistics, and health-related issues in urban areas. This research is conducted in the City Science group at the MIT Media Lab. </p>
+                    </div>
+                </div>
+
+                <!-- Add more items as needed -->
+            </div>
+        </div>
+
     </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('accordion-button')) {
+            const contents = document.querySelectorAll('.accordion-content');
+            contents.forEach(content => {
+                if (content !== e.target.nextElementSibling) {
+                    content.style.display = 'none';
+                }
+            });
+            const targetContent = e.target.nextElementSibling;
+            targetContent.style.display = targetContent.style.display === 'block' ? 'none' : 'block';
+        }
+    });
+</script>
 {% endblock %}
