@@ -37,6 +37,10 @@ def projects(request):
         return render(request, 'main/partials/project-list.html', {'projects': projects})
     return render(request, 'main/projects.html', {'projects': projects})
 
+def project_detail(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    return render(request, 'main/project_detail.html', {'project': project})
+
 def publications(request):
     publications_list = Publication.objects.all()
     page_number = request.GET.get('page', 1)

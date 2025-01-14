@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ project.title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ project.title }}</h1>
+    <p>{{ project.description }}</p>
+    {% if project.image %}
+        <img src="{{ project.image.url }}" alt="{{ project.title }}">
+    {% endif %}
+    <p>Start Date: {{ project.start_date }}</p>
+    {% if project.end_date %}
+        <p>End Date: {{ project.end_date }}</p>
+    {% else %}
+        <p>Ongoing: {{ project.is_ongoing }}</p>
+    {% endif %}
+    <p>Technologies: {{ project.technologies }}</p>
+    {% if project.github_link %}
+        <p><a href="{{ project.github_link }}">GitHub Repository</a></p>
+    {% endif %}
+    {% if project.live_link %}
+        <p><a href="{{ project.live_link }}">Live Project</a></p>
+    {% endif %}
+    {% if project.publications.exists %}
+        <h3>Related Publications</h3>
+        <ul>
+            {% for publication in project.publications.all %}
+                <li>{{ publication.title }} - {{ publication.journal }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div>{{ project.content|safe }}</div>
+{% endblock %}

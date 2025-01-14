@@ -1,11 +1,17 @@
 <div class="projects-grid">
   {% for project in projects %}
       <div class="project-card">
-          {% if project.image %}
-              <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
-          {% endif %}
-          <div class="project-content">
-              <h3>{{ project.title }}</h3>
+          <div class="project-card-header">
+              {% if project.image %}
+                  <a href="{% url 'project_detail' project.pk %}">
+                      <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image" style="width: 400px; height: auto;">
+                  </a>
+              {% endif %}
+              <h3>
+                  <a href="{% url 'project_detail' project.pk %}">{{ project.title }}</a>
+              </h3>
+          </div>
+          <div class="project-card-body">
               <p class="project-date">
                   {{ project.start_date|date:"M Y" }} -
                   {% if project.is_ongoing %}
@@ -15,45 +21,18 @@
                   {% endif %}
               </p>
               <p class="project-tech">{{ project.technologies }}</p>
-              <p class="project-description">{{ project.description|truncatewords:30 }}</p>
-
-              <div class="project-links">
-                  {% if project.github_link %}
-                      <a href="{{ project.github_link }}" target="_blank" class="project-link">GitHub</a>
-                  {% endif %}
-                  {% if project.live_link %}
-                      <a href="{{ project.live_link }}" target="_blank" class="project-link">Live Demo</a>
-                  {% endif %}
-              </div>
-
-              {% if project.publications.exists %}
-                  <div class="project-publications">
-                      <h4>Related Publications</h4>
-                      <ul>
-                          {% for pub in project.publications.all %}
-                              <li>
-                                  {% if pub.link %}
-                                      <a href="{{ pub.link }}" target="_blank">{{ pub.title }}</a>
-                                  {% else %}
-                                      {{ pub.title }}
-                                  {% endif %}
-                              </li>
-                          {% endfor %}
-                      </ul>
-                  </div>
+              <p class="project-description">{{ project.description|truncatewords:10 }}</p>
+          </div>
+          <div class="project-card-footer">
+              {% if project.github_link %}
+                  <a href="{{ project.github_link }}" target="_blank" class="project-link">GitHub</a>
+              {% endif %}
+              {% if project.live_link %}
+                  <a href="{{ project.live_link }}" target="_blank" class="project-link">Live Demo</a>
               {% endif %}
           </div>
       </div>
   {% empty %}
       <p>No projects available yet.</p>
   {% endfor %}
-
-  {% if projects.has_next %}
-      <div class="load-more"
-           hx-get="{% url 'projects' %}?page={{ projects.next_page_number }}"
-           hx-trigger="intersect once"
-           hx-swap="beforeend"
-           hx-target=".projects-grid">
-      </div>
-  {% endif %}
 </div>
