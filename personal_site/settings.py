@@ -1,3 +1,5 @@
+import os
+
 """
 Django settings for personal_site project.
 
@@ -144,3 +146,10 @@ MEDIA_ROOT = BASE_DIR / 'media'
 LANGUAGE_COOKIE_NAME = 'django_language'
 LANGUAGE_COOKIE_AGE = None
 LANGUAGE_COOKIE_PATH = '/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
