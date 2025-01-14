@@ -28,8 +28,7 @@ urlpatterns = [
 # Wrap your existing URLs with i18n_patterns
 urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
-    path('about/', views.about, name='about'),
+    path('', views.about, name='about'),
     path('education/', views.education, name='education'),
     path('work/', views.work, name='work'),
     path('publications/', views.publications, name='publications'),

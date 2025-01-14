@@ -3,9 +3,6 @@ from .models import Project, Publication, BlogPost
 from django.core.paginator import Paginator
 import markdown
 
-def home(request):
-    return render(request, 'main/home.html')
-
 def about(request):
     return render(request, 'main/about.html')
 
