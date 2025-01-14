@@ -3,7 +3,7 @@
   margin-left: 1rem;
 }
 
-.about-header h1 {
+/* .about-header h1 {
   background-color: #000;
   color: #fff;
   padding: 0.5rem 2rem;
@@ -14,7 +14,7 @@
   clip-path: polygon(0 0, 85% 0, 100% 50%, 85% 100%, 0 100%);
   font-weight: bold;
   font-family: 'Georgia', Times, serif;
-}
+} */
 
 .about-header .subtitle {
   padding: 0.3rem 1rem;
