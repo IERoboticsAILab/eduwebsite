@@ -103,6 +103,7 @@ footer {
     clip-path: polygon(0 0, 85% 0, 100% 50%, 85% 100%, 0 100%);
     font-weight: bold;
     font-family: 'Georgia', Times, serif;
+    padding-right: 70px;
   }
 
   .chevron-header {
