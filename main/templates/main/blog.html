@@ -4,14 +4,11 @@
 
 {% block content %}
     <h1>Blog</h1>
-    <div class="about-content">
-        <p>Write a brief introduction about yourself here.</p>
-
-        <h2>Skills</h2>
-        <ul>
-            <li>Skill 1</li>
-            <li>Skill 2</li>
-            <li>Skill 3</li>
-        </ul>
+    <div id="blog-list">
+        {% for post in blog_posts %}
+            <div>
+                <h2><a href="{% url 'blog_post_detail' post.pk %}">{{ post.title }}</a></h2>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
