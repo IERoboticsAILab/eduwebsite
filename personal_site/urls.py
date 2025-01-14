@@ -30,7 +30,12 @@ urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
-    path('projects/', views.projects, name='projects'),
+    path('education/', views.education, name='education'),
+    path('work/', views.work, name='work'),
+    path('publications/', views.publications, name='publications'),
+    path('talks/', views.talks, name='talks'),
+    path('blog/', views.blog, name='blog'),
+    path('contact/', views.contact, name='contact'),
     prefix_default_language=True,  # Changed to True to ensure consistent URL patterns
 )
 

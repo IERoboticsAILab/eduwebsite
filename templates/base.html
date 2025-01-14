@@ -8,12 +8,27 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <nav>
-        <a href="{% url 'home' %}">{% trans "Home" %}</a>
-        <a href="{% url 'about' %}">{% trans "About" %}</a>
-        <a href="{% url 'projects' %}">{% trans "Projects" %}</a>
-        {% include "partials/language_selector.html" %}
-    </nav>
+    <header>
+        <div class="top-bar">
+            <div class="language-links">
+                {% include "partials/language_selector.html" %}
+            </div>
+        </div>
+
+        <div class="site-title">
+            <h1>Eduardo Castello</h1>
+            <p class="subtitle">{% trans "Postdoctoral research fellow at MIT" %}</p>
+        </div>
+
+        <nav class="main-nav">
+            <a href="{% url 'about' %}">{% trans "ABOUT ME" %}</a>
+            <a href="{% url 'work' %}">{% trans "WORK" %}</a>
+            <a href="{% url 'education' %}">{% trans "EDUCATION" %}</a>
+            <a href="{% url 'talks' %}">{% trans "TALKS" %}</a>
+            <a href="{% url 'publications' %}">{% trans "PUBLICATIONS" %}</a>
+            <a href="{% url 'blog' %}">{% trans "BLOG" %}</a>
+        </nav>
+    </header>
 
     <main>
         {% block content %}
