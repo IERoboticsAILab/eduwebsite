@@ -1,0 +1,26 @@
+.publication-item {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.publication-grid {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) 3fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.publication-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Make it responsive for mobile devices */
+@media (max-width: 768px) {
+  .publication-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+  }
+}

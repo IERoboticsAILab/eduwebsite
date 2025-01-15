@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/publications.css' %}">
+{% endblock %}
 
 {% block title %}{% trans "Publications" %}{% endblock %}
 
