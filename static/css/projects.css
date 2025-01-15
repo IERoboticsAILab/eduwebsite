@@ -1,50 +1,90 @@
 .projects-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 24px;
 }
 
 .project-card {
   background-color: #fff;
   border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 300px;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .project-card-header {
-  padding: 8px;
-  text-align: center;
+  padding: 0;
+}
+
+.project-card-header h3 {
+  padding: 16px;
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.project-card-header h3 a {
+  color: #333;
+  text-decoration: none;
 }
 
 .project-image {
-  width: 100%;
+  width: 300px;
   height: auto;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #eee;
 }
 
 .project-card-body {
-  padding: 8px;
+  padding: 16px;
   flex-grow: 1;
 }
 
+.project-date {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.project-tech {
+  color: #444;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.project-description {
+  color: #555;
+  line-height: 1.5;
+}
+
 .project-card-footer {
-  padding: 8px;
+  padding: 16px;
   text-align: center;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #eee;
+  background-color: #fafafa;
 }
 
 .project-link {
   display: inline-block;
-  margin: 4px 0;
+  margin: 0 8px;
+  padding: 6px 12px;
   color: #007bff;
   text-decoration: none;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  transition: all 0.2s;
 }
 
 .project-link:hover {
-  text-decoration: underline;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
 }

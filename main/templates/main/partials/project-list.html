@@ -4,7 +4,7 @@
           <div class="project-card-header">
               {% if project.image %}
                   <a href="{% url 'project_detail' project.pk %}">
-                      <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image" style="width: 400px; height: auto;">
+                      <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image" style="width: 300px; height: auto;">
                   </a>
               {% endif %}
               <h3>
