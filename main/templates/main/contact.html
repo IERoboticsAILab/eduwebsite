@@ -1,17 +1,42 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Contact{% endblock %}
 
-{% block content %}
-    <h1>Contact</h1>
-    <div class="about-content">
-        <p>Write a brief introduction about yourself here.</p>
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock %}
 
-        <h2>Skills</h2>
-        <ul>
-            <li>Skill 1</li>
-            <li>Skill 2</li>
-            <li>Skill 3</li>
-        </ul>
+{% block content %}
+    <div class="contact-container">
+        <h1>Get in Touch</h1>
+        <div class="contact-content">
+            <p>Feel free to reach out to me using the form below. I'll get back to you as soon as possible!</p>
+
+            <form method="POST" class="contact-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
     </div>
 {% endblock %}
