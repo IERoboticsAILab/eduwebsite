@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-13 21:54+0100\n"
+"POT-Creation-Date: 2025-01-14 18:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,33 +19,49 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
 "1 : 2;\n"
 
-#: personal_site/settings.py:118
-msgid "English"
-msgstr ""
-
-#: personal_site/settings.py:119
-msgid "Spanish"
+#: main/templates/main/publications.html:4
+msgid "Publications"
 msgstr ""
 
 #: templates/base.html:6
 msgid "My Personal Site"
 msgstr "Mi sitio personal"
 
-#: templates/base.html:12
-msgid "Home"
-msgstr "Inicio"
+#: templates/base.html:21
+msgid "Postdoctoral research fellow at MIT"
+msgstr "Investigador postdoctoral en MIT"
 
-#: templates/base.html:13
-msgid "About"
-msgstr "Sobre mí"
+#: templates/base.html:25
+msgid "ABOUT ME"
+msgstr "SOBRE MÍ"
 
-#: templates/base.html:14
-msgid "Projects"
-msgstr "Proyectos"
+#: templates/base.html:26
+msgid "WORK"
+msgstr "TRABAJO"
 
-#: templates/base.html:24
-msgid "Your Name"
-msgstr "Tu nombre"
+#: templates/base.html:27
+msgid "EDUCATION"
+msgstr "EDUCACIÓN"
+
+#: templates/base.html:28
+msgid "PROJECTS"
+msgstr "PROYECTOS"
+
+#: templates/base.html:29
+msgid "TALKS"
+msgstr "TALKS"
+
+#: templates/base.html:30
+msgid "PUBLICATIONS"
+msgstr "PUBLICACIONES"
+
+#: templates/base.html:31
+msgid "BLOG"
+msgstr "BLOG"
+
+#: templates/base.html:41
+msgid "Eduardo Castello"
+msgstr "Eduardo Castello"
 
 #: venv/lib/python3.11/site-packages/django/contrib/messages/apps.py:16
 msgid "Messages"
@@ -53,11 +69,11 @@ msgstr "Mensajes"
 
 #: venv/lib/python3.11/site-packages/django/contrib/sitemaps/apps.py:8
 msgid "Site Maps"
-msgstr ""
+msgstr "Mapas del sitio"
 
 #: venv/lib/python3.11/site-packages/django/contrib/staticfiles/apps.py:9
 msgid "Static Files"
-msgstr ""
+msgstr "Archivos estáticos"
 
 #: venv/lib/python3.11/site-packages/django/contrib/syndication/apps.py:7
 msgid "Syndication"
@@ -1270,3 +1286,21 @@ msgstr ""
 #: venv/lib/python3.11/site-packages/django/views/templates/default_urlconf.html:236
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+#~ msgid "English"
+#~ msgstr "Inglés"
+
+#~ msgid "Spanish"
+#~ msgstr "Español"
+
+#~ msgid "Home"
+#~ msgstr "Inicio"
+
+#~ msgid "About"
+#~ msgstr "Sobre mí"
+
+#~ msgid "Projects"
+#~ msgstr "Proyectos"
+
+#~ msgid "Your Name"
+#~ msgstr "Tu nombre"

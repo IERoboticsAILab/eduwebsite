@@ -25,7 +25,16 @@
         <h3>Related Publications</h3>
         <ul>
             {% for publication in project.publications.all %}
-                <li>{{ publication.title }} - {{ publication.journal }}</li>
+                <li>
+                    {% if publication.link %}
+                        <a href="{{ publication.link }}">{{ publication.title }}</a>
+                    {% elif publication.doi %}
+                        <a href="https://doi.org/{{ publication.doi }}">{{ publication.title }}</a>
+                    {% else %}
+                        {{ publication.title }}
+                    {% endif %}
+                    - {{ publication.journal }}
+                </li>
             {% endfor %}
         </ul>
     {% endif %}

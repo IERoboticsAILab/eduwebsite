@@ -109,3 +109,11 @@ footer {
   .chevron-header {
     margin-bottom: 20px;
   }
+
+  .header-subtitle {
+    padding: 0.3rem 1rem;
+    color: #666;
+    font-style: italic;
+    margin-left: 2rem;
+
+  }
