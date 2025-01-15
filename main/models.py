@@ -3,6 +3,7 @@ from django.db import models
 class Publication(models.Model):
     title = models.CharField(max_length=200)
     authors = models.CharField(max_length=500)
+    image = models.ImageField(upload_to='publications/', blank=True)
     publication_date = models.DateField()
     journal = models.CharField(max_length=200)
     doi = models.CharField(max_length=200, blank=True)
