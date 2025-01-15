@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Publications" %}{% endblock %}
+
+{% block content %}
+<div class="publications-grid"
+  hx-get="{% url 'publications' %}"
+  hx-trigger="intersect once"
+  hx-swap="outerHTML"
+  hx-target="this">
+{% include 'main/partials/publication-list.html' %}
+</div>
+{% endblock %}

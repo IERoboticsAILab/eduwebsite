@@ -1,17 +1,58 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
 
 {% block title %}About Me{% endblock %}
 
 {% block content %}
-    <h1>About Me</h1>
-    <div class="about-content">
-        <p>Write a brief introduction about yourself here.</p>
-
-        <h2>Skills</h2>
-        <ul>
-            <li>Skill 1</li>
-            <li>Skill 2</li>
-            <li>Skill 3</li>
-        </ul>
+    <div class="chevron-header">
+        <h1>About me..</h1>
+        <span class="header-subtitle">CV and some details about me</span>
     </div>
+
+    <div class="about-content">
+        <div class="profile-section">
+            <div class="profile-image">
+                <img src="{% static 'images/Headshot2021.jpg' %}" alt="Profile Photo">
+            </div>
+
+            <div class="profile-text">
+                <h2 class="position-title">"Postdoctoral research fellow at Massachusetts Institute of Technology (MIT)"</h2>
+
+                <p>Researcher specialized in robotics. I have collaborated on international projects in Japan, Europe and the United States, with world-class academics such as Alex ('Sandy') Pentland and Hiroshi Ishiguro. Currently conducting research and participating in projects on robotics and blockchain technology.</p>
+
+                <p>I have written in various generalist publications such as El País, El Mundo as well as scientific publications such as Advanced Robotics or Swarm Intelligence. My projects have had repercussions in several media outlets, like BBC, Wired, The Guardian or MIT Technology Review. I've given masterclasses and lectures at international congresses such as ICRA, EMTECH or GREX.</p>
+
+                <p>My goal is to build new distributed robotic systems that can change the way humanity feeds, communicates, transports and lives. These new decentralized technologies will have a great weight to build more open, fair and transparent ecosystems for their future users.</p>
+                <div class="profile-links">
+                    <a href="#" class="download-btn">Download CV</a>
+                    <a href="https://www.linkedin.com/in/eduardocastelloferrer" class="linkedin-btn">
+                        <img src="{% static 'images/linkedinlogo.svg' %}" alt="LinkedIn" style="width: 40px; height: 40px;">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="info-box">
+                <h3><i class="fas fa-user"></i> Name</h3>
+                <p>Eduardo Castello Ferrer</p>
+            </div>
+            <div class="info-box">
+                <h3><i class="fas fa-map-marker-alt"></i> Address</h3>
+                <p>MIT Media Lab, 75 Amherst St, Cambridge, MA 02139</p>
+            </div>
+            <div class="info-box">
+                <h3><i class="fas fa-globe"></i> Languages</h3>
+                <p>Fluent in English, Spanish, Catalan, Italian and Japanese.</p>
+            </div>
+            <div class="info-box">
+                <h3><i class="fas fa-newspaper"></i> Research Media Appearances</h3>
+                <p>BBC, El País, El Mundo, ABC, The Guardian, Wired, Time, The Economist, MIT Technology Review ...</p>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

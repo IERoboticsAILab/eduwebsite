@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Publication
+from .models import Project, Publication, BlogPost
 
 @admin.register(Publication)
 class PublicationAdmin(admin.ModelAdmin):
@@ -14,3 +14,9 @@ class ProjectAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description', 'technologies')
     list_filter = ('is_ongoing', 'start_date')
     filter_horizontal = ('publications',)  # Makes it easier to manage many-to-many relationships
+
+@admin.register(BlogPost)
+class BlogPostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author', 'created_at')
+    search_fields = ('title', 'content')
+    list_filter = ('created_at',)

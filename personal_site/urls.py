@@ -15,14 +15,30 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf.urls.i18n import i18n_patterns
 from main import views
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('i18n/', include('django.conf.urls.i18n')),  # Language switch URL
+]
+
+# Wrap your existing URLs with i18n_patterns
+urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
-    path('about/', views.about, name='about'),
+    path('', views.about, name='about'),
+    path('education/', views.education, name='education'),
+    path('work/', views.work, name='work'),
     path('projects/', views.projects, name='projects'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('projects/<int:pk>/', views.project_detail, name='project_detail'),
+    path('publications/', views.publications, name='publications'),
+    path('talks/', views.talks, name='talks'),
+    path('blog/', views.blog, name='blog'),
+    path('blog/<int:pk>/', views.blog_post_detail, name='blog_post_detail'),
+    path('contact/', views.contact, name='contact'),
+    prefix_default_language=True,  # Changed to True to ensure consistent URL patterns
+)
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
