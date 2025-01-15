@@ -9,6 +9,9 @@
 {% block title %}{% trans "Publications" %}{% endblock %}
 
 {% block content %}
+<div class="chevron-header">
+    <h1>My Publications</h1>
+</div>
 <div class="publications-grid"
   hx-get="{% url 'publications' %}"
   hx-trigger="intersect once"
