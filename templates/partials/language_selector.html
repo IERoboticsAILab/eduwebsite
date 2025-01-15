@@ -1,16 +1,46 @@
 {% load i18n %}
+{% load static %}
+
 <div class="language-selector">
-    <form action="{% url 'set_language' %}" method="post">
+    <form action="{% url 'set_language' %}" method="post" class="language-icons">
         {% csrf_token %}
         <input name="next" type="hidden" value="{{ request.path }}">
-        <select name="language" onchange="this.form.submit()">
-            {% get_current_language as CURRENT_LANGUAGE %}
-            {% get_available_languages as LANGUAGES %}
-            {% for lang_code, lang_name in LANGUAGES %}
-                <option value="{{ lang_code }}" {% if lang_code == CURRENT_LANGUAGE %}selected{% endif %}>
-                    {{ lang_name }}
-                </option>
-            {% endfor %}
-        </select>
+        {% get_current_language as CURRENT_LANGUAGE %}
+        {% get_available_languages as LANGUAGES %}
+        {% for lang_code, lang_name in LANGUAGES %}
+            <button type="submit" name="language" value="{{ lang_code }}" class="language-icon-btn">
+                <img src="{% static 'images/'|add:lang_code|add:'.svg' %}"
+                     alt="{{ lang_name }}"
+                     title="{{ lang_name }}"
+                     class="{% if lang_code == CURRENT_LANGUAGE %}active{% endif %}">
+            </button>
+        {% endfor %}
     </form>
 </div>
+<style>
+    .language-icons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .language-icon-btn {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .language-icon-btn img {
+        width: 24px;
+        height: 24px;
+        opacity: 0.6;
+    }
+
+    .language-icon-btn img.active {
+        opacity: 1;
+    }
+
+    .language-icon-btn:hover img {
+        opacity: 1;
+    }
+</style>
