@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Project, Publication, BlogPost
+from .models import Project, Publication
 from django.core.paginator import Paginator
-import markdown
 
 def about(request):
     return render(request, 'main/about.html')
@@ -14,15 +13,6 @@ def work(request):
 
 def talks(request):
     return render(request, 'main/talks.html')
-
-def blog(request):
-    blog_posts = BlogPost.objects.all()
-    return render(request, 'main/blog.html', {'blog_posts': blog_posts})
-
-def blog_post_detail(request, pk):
-    post = get_object_or_404(BlogPost, pk=pk)
-    post.content = markdown.markdown(post.content)  # Convert Markdown to HTML
-    return render(request, 'main/blog_post_detail.html', {'post': post})
 
 def contact(request):
     return render(request, 'main/contact.html')

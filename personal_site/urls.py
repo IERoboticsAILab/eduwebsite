@@ -35,8 +35,6 @@ urlpatterns += i18n_patterns(
     path('projects/<int:pk>/', views.project_detail, name='project_detail'),
     path('publications/', views.publications, name='publications'),
     path('talks/', views.talks, name='talks'),
-    path('blog/', views.blog, name='blog'),
-    path('blog/<int:pk>/', views.blog_post_detail, name='blog_post_detail'),
     path('contact/', views.contact, name='contact'),
     prefix_default_language=True,  # Changed to True to ensure consistent URL patterns
 )
