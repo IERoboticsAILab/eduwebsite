@@ -1,14 +1,8 @@
-.contact-container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-}
 
-.contact-content {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+.contact-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .contact-form {
