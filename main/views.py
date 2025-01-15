@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Project, Publication
 from django.core.paginator import Paginator
+from django.core.mail import send_mail
+from django.shortcuts import redirect
+from django.contrib import messages
 
 def about(request):
     return render(request, 'main/about.html')
@@ -15,6 +18,28 @@ def talks(request):
     return render(request, 'main/talks.html')
 
 def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+
+        # Compose email message
+        email_message = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
+
+        try:
+            send_mail(
+                subject=f"Contact Form: {subject}",
+                message=email_message,
+                from_email=email,
+                recipient_list=['your-email@example.com'],  # Replace with your email
+                fail_silently=False,
+            )
+            messages.success(request, 'Your message has been sent successfully!')
+            return redirect('contact')
+        except Exception as e:
+            messages.error(request, 'An error occurred while sending your message. Please try again.')
+
     return render(request, 'main/contact.html')
 
 def projects(request):
