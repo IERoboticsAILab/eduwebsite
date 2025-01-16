@@ -30,6 +30,10 @@ main {
   padding-bottom: 8rem;
 }
 
+.banner-overlay-text {
+  padding-left: 0.5rem;
+}
+
 .banner-overlay h1 {
   max-width: 1200px;
   margin: 0 auto;
@@ -190,6 +194,10 @@ main {
     object-fit: cover;
     border-radius: 4px;
     flex-shrink: 0;
+}
+
+h3 {
+    font-size: 2rem;
 }
 
 .publication-content {
