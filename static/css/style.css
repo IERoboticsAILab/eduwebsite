@@ -117,3 +117,45 @@ footer {
     margin-left: 2rem;
 
   }
+
+  .title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.title-text {
+    flex: 1;
+}
+
+/* Remove the old top-bar if it exists */
+.top-bar {
+    display: none;
+}
+
+.language-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.language-icon-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.language-icon-btn img {
+    width: 60px;
+    height: 60px;
+    opacity: 0.6;
+}
+
+.language-icon-btn img.active {
+    opacity: 1;
+}
+
+.language-icon-btn:hover img {
+    opacity: 1;
+}

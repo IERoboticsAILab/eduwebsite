@@ -12,35 +12,8 @@
                 <img src="{% static 'images/'|add:lang_code|add:'.svg' %}"
                      alt="{{ lang_name }}"
                      title="{{ lang_name }}"
-                     class="{% if lang_code == CURRENT_LANGUAGE %}active{% endif %}">
+                     class="{% if lang_code == CURRENT_LANGUAGE %}active{% endif %} language-icon">
             </button>
         {% endfor %}
     </form>
 </div>
-<style>
-    .language-icons {
-        display: flex;
-        gap: 10px;
-    }
-
-    .language-icon-btn {
-        background: none;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-    }
-
-    .language-icon-btn img {
-        width: 24px;
-        height: 24px;
-        opacity: 0.6;
-    }
-
-    .language-icon-btn img.active {
-        opacity: 1;
-    }
-
-    .language-icon-btn:hover img {
-        opacity: 1;
-    }
-</style>

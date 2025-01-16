@@ -10,15 +10,16 @@
 </head>
 <body>
     <header>
-        <div class="top-bar">
-            <div class="language-links">
-                {% include "partials/language_selector.html" %}
-            </div>
-        </div>
-
         <div class="site-title">
-            <h1>Eduardo Castello</h1>
-            <p class="subtitle">{% trans "Postdoctoral research fellow at MIT" %}</p>
+            <div class="title-container">
+                <div class="title-text">
+                    <h1>Eduardo Castello</h1>
+                    <p class="subtitle">{% trans "Postdoctoral research fellow at MIT" %}</p>
+                </div>
+                <div class="language-links">
+                    {% include "partials/language_selector.html" %}
+                </div>
+            </div>
         </div>
 
         <nav class="main-nav">
