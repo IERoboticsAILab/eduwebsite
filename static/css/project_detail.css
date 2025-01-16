@@ -149,7 +149,8 @@ main {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     gap: 2rem;
-    align-items: start;
+    align-items: stretch;
+    min-height: 200px;
 }
 
 .publication-date {
@@ -185,7 +186,7 @@ main {
 
 .publication-image {
     width: 200px;
-    height: 150px;
+    height: 100%;
     object-fit: cover;
     border-radius: 4px;
     flex-shrink: 0;
