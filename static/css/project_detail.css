@@ -67,6 +67,7 @@ main {
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   align-items: start;
+  position: relative;
 }
 
 .content-card iframe {
@@ -108,4 +109,18 @@ main {
   .content-card {
     grid-template-columns: 1fr;
   }
+}
+
+.content-card-text {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content-card-links {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: auto;
 }
