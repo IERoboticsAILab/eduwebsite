@@ -8,6 +8,21 @@
     {% if project.image %}
         <img src="{{ project.image.url }}" alt="{{ project.title }}">
     {% endif %}
+
+    <!-- Add the gallery grid here -->
+    {% if project.gallery_images.exists %}
+        <div class="gallery-grid">
+            {% for image in project.gallery_images.all %}
+                <div class="gallery-item">
+                    <img src="{{ image.image.url }}" alt="{{ image.caption|default:project.title }}">
+                    {% if image.caption %}
+                        <p class="caption">{{ image.caption }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <p>Start Date: {{ project.start_date }}</p>
     {% if project.end_date %}
         <p>End Date: {{ project.end_date }}</p>
@@ -39,4 +54,32 @@
         </ul>
     {% endif %}
     <div>{{ project.content|safe }}</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+
+    .gallery-item {
+        width: 100%;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .gallery-item .caption {
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        color: #666;
+    }
+</style>
 {% endblock %}
