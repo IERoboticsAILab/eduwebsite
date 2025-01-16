@@ -78,7 +78,7 @@ python manage.py compilemessages
 
 ### Working with Translations
 1. Translation files are located in `locale/<language_code>/LC_MESSAGES/`
-2. Edit the .po files with a text editor or a tool like Poedit
+2. Edit the .po files, do not add any extra labels, just add the translations in place
 3. Compile messages after making changes
 
 ## 📝 Database Management
