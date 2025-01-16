@@ -73,15 +73,67 @@
             <div class="gallery-grid">
                 {% for image in project.gallery_images.all %}
                     <div class="gallery-item">
-                        <img src="{{ image.image.url }}" alt="{{ image.caption|default:project.title }}">
+                        <img src="{{ image.image.url }}" alt="{{ image.caption|default:project.title }}" onclick="openLightbox();currentSlide({{ forloop.counter }})">
                         {% if image.caption %}
                             <p class="caption">{{ image.caption }}</p>
                         {% endif %}
                     </div>
                 {% endfor %}
             </div>
-        {% endif %}
 
+            <!-- Lightbox -->
+            <div id="lightbox" class="lightbox">
+                <span class="close cursor" onclick="closeLightbox()">&times;</span>
+                <div class="lightbox-content">
+                    {% for image in project.gallery_images.all %}
+                        <div class="slides">
+                            <img src="{{ image.image.url }}" alt="{{ image.caption|default:project.title }}">
+                            {% if image.caption %}
+                                <div class="caption-container">
+                                    <p>{{ image.caption }}</p>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+                </div>
+            </div>
+
+            <script>
+                let slideIndex = 1;
+
+                function openLightbox() {
+                    document.getElementById("lightbox").style.display = "block";
+                }
+
+                function closeLightbox() {
+                    document.getElementById("lightbox").style.display = "none";
+                }
+
+                function changeSlide(n) {
+                    showSlides(slideIndex += n);
+                }
+
+                function currentSlide(n) {
+                    showSlides(slideIndex = n);
+                }
+
+                function showSlides(n) {
+                    const slides = document.getElementsByClassName("slides");
+
+                    if (n > slides.length) {slideIndex = 1}
+                    if (n < 1) {slideIndex = slides.length}
+
+                    for (let i = 0; i < slides.length; i++) {
+                        slides[i].style.display = "none";
+                    }
+
+                    slides[slideIndex-1].style.display = "block";
+                }
+            </script>
+        {% endif %}
 
     </div>
 {% endblock %}
