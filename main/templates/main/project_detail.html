@@ -12,15 +12,22 @@
         <div class="project-banner">
             <img src="{{ project.image.url }}" alt="{{ project.title }}">
             <div class="banner-overlay">
-                <h1>{{ project.title }}</h1>
+                <div class="banner-overlay-text">
+                    <p>{{ project.start_date|date:"m-Y" }}</p>
+                    <h1>{{ project.title }}</h1>
+                </div>
             </div>
         </div>
     {% else %}
+        <p>Start Date: {{ project.start_date }}</p>
         <h1>{{ project.title }}</h1>
     {% endif %}
 
     <div class="project-content">
-        <p>{{ project.description }}</p>
+        <div class="content-card">
+            <iframe width="560" height="315" src="{{ project.video_url }}" title="Excel Unusual Roller Coaster" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <p>{{ project.description }}</p>
+        </div>
 
         {% if project.gallery_images.exists %}
             <div class="gallery-grid">
@@ -35,12 +42,7 @@
             </div>
         {% endif %}
 
-        <p>Start Date: {{ project.start_date }}</p>
-        {% if project.end_date %}
-            <p>End Date: {{ project.end_date }}</p>
-        {% else %}
-            <p>Ongoing: {{ project.is_ongoing }}</p>
-        {% endif %}
+
         <p>Technologies: {{ project.technologies }}</p>
         {% if project.github_link %}
             <p><a href="{{ project.github_link }}">GitHub Repository</a></p>
