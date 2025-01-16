@@ -46,21 +46,23 @@
             <div class="publications-list">
                 {% for publication in project.publications.all %}
                     <div class="publication-card">
-                        <div class="publication-date">{{ publication.publication_date|date:"m-Y" }}</div>
-                        <h4 class="publication-title">
-                            {% if publication.link %}
-                                <a href="{{ publication.link }}">{{ publication.title }}</a>
-                            {% elif publication.doi %}
-                                <a href="https://doi.org/{{ publication.doi }}">{{ publication.title }}</a>
-                            {% else %}
-                                {{ publication.title }}
-                            {% endif %}
-                        </h4>
-                        <p class="publication-authors">{{ publication.authors }}</p>
-                        <p class="publication-journal">{{ publication.journal }}</p>
                         {% if publication.image %}
                             <img src="{{ publication.image.url }}" alt="{{ publication.title }}" class="publication-image">
                         {% endif %}
+                        <div class="publication-content">
+                            <div class="publication-date">{{ publication.publication_date|date:"m-Y" }}</div>
+                            <h4 class="publication-title">
+                                {% if publication.link %}
+                                    <a href="{{ publication.link }}">{{ publication.title }}</a>
+                                {% elif publication.doi %}
+                                    <a href="https://doi.org/{{ publication.doi }}">{{ publication.title }}</a>
+                                {% else %}
+                                    {{ publication.title }}
+                                {% endif %}
+                            </h4>
+                            <p class="publication-authors">{{ publication.authors }}</p>
+                            <p class="publication-journal">{{ publication.journal }}</p>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
