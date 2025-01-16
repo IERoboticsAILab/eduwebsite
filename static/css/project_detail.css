@@ -124,3 +124,13 @@ main {
   flex-wrap: wrap;
   margin-top: auto;
 }
+
+.content-card-links a {
+  color: #333;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.content-card-links a:hover {
+  color: #007bff;
+}

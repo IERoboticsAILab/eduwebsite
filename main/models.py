@@ -23,10 +23,7 @@ class Project(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='projects/', blank=True)
     video_url = models.URLField(blank=True)
-    start_date = models.DateField()
-    end_date = models.DateField(null=True, blank=True)
-    is_ongoing = models.BooleanField(default=True)
-    technologies = models.CharField(max_length=200)
+    date = models.DateField()
     github_link = models.URLField(blank=True)
     live_link = models.URLField(blank=True)
     publications = models.ManyToManyField(Publication, blank=True, related_name='projects')
@@ -34,7 +31,7 @@ class Project(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-start_date']
+        ordering = ['-date']
 
     def __str__(self):
         return self.title

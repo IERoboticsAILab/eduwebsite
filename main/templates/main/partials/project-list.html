@@ -13,15 +13,8 @@
           </div>
           <div class="project-card-body">
               <p class="project-date">
-                  {{ project.start_date|date:"M Y" }} -
-                  {% if project.is_ongoing %}
-                      Present
-                  {% else %}
-                      {{ project.end_date|date:"M Y" }}
-                  {% endif %}
+                  {{ project.date|date:"M Y" }}
               </p>
-              <p class="project-tech">{{ project.technologies }}</p>
-              <p class="project-description">{{ project.description|truncatewords:10 }}</p>
           </div>
           <div class="project-card-footer">
               {% if project.github_link %}

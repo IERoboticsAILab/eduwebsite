@@ -14,8 +14,7 @@ class ProjectImageInline(admin.TabularInline):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'start_date', 'is_ongoing', 'technologies')
-    search_fields = ('title', 'description', 'technologies')
-    list_filter = ('is_ongoing', 'start_date')
+    list_display = ('title', 'date')
+    search_fields = ('title', 'description')
     filter_horizontal = ('publications',)
     inlines = [ProjectImageInline]  # Add this line to include the image upload interface

@@ -19,7 +19,7 @@
             </div>
         </div>
     {% else %}
-        <p>Start Date: {{ project.start_date }}</p>
+        <p>{{ project.date|date:"m-Y" }}</p>
         <h1>{{ project.title }}</h1>
     {% endif %}
 
@@ -42,6 +42,7 @@
         </div>
 
         {% if project.gallery_images.exists %}
+            <h3>Gallery</h3>
             <div class="gallery-grid">
                 {% for image in project.gallery_images.all %}
                     <div class="gallery-item">
@@ -55,7 +56,6 @@
         {% endif %}
 
 
-        <p>Technologies: {{ project.technologies }}</p>
 
         {% if project.publications.exists %}
             <h3>Related Publications</h3>
