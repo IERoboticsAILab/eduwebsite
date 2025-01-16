@@ -22,6 +22,7 @@ class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     image = models.ImageField(upload_to='projects/', blank=True)
+    video_url = models.URLField(blank=True)
     start_date = models.DateField()
     end_date = models.DateField(null=True, blank=True)
     is_ongoing = models.BooleanField(default=True)
