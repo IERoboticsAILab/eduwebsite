@@ -1,12 +1,14 @@
 version: '3.8'
+
 services:
   web:
     build: .
     ports:
-      - "8000:8000"
+      - "8082:8082"
     volumes:
       - .:/app
-      - django_data:/app/db  # This persists your database
+      - django_data:/app/db
+    restart: unless-stopped
 
 volumes:
-  django_data:  # Define the volume
+  django_data:
