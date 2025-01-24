@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load markdown_extras %}
+
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/work.css' %}">
 {% endblock %}
@@ -13,48 +15,15 @@
     <div class="work-container">
         <div class="accordion-column">
             <div class="accordion">
-
+                {% for item in work_items %}
                 <div class="accordion-item">
-                    <button class="accordion-button">Postdoctoral research affiliate - 2019 - Present</button>
-                    <div id="content1" class="accordion-content" style="display: none;">
-                        <h3>MIT Media Lab, Massachusetts Institute of Technology</h3>
-                        <p>Conduct research on how distributed robotics systems provide new ways to improve mobility, last-mile logistics, and health-related issues in urban areas. This research is conducted in the City Science group at the MIT Media Lab. </p>
+                    <button class="accordion-button">{{ item.title }} - {{ item.date_range }}</button>
+                    <div id="content{{ forloop.counter }}" class="accordion-content" style="display: none;">
+                        <h3>{{ item.institution }}</h3>
+                        <p>{{ item.description|markdown|safe }}</p>
                     </div>
                 </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-button">Postdoctoral Fellow - 2019 - 2020</button>
-                    <div id="content2" class="accordion-content" style="display: none;">
-                        <h3>MIT Media Lab, Massachusetts Institute of Technology</h3>
-                        <p>Conduct research on how distributed robotics systems provide new ways to improve mobility, last-mile logistics, and health-related issues in urban areas. This research is conducted in the City Science group at the MIT Media Lab. </p>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-button">Postdoctoral Fellow - 2019 - 2020</button>
-                    <div id="content3" class="accordion-content" style="display: none;">
-                        <h3>MIT Media Lab, Massachusetts Institute of Technology</h3>
-                        <p>Conduct research on how distributed robotics systems provide new ways to improve mobility, last-mile logistics, and health-related issues in urban areas. This research is conducted in the City Science group at the MIT Media Lab. </p>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-button">Postdoctoral Fellow - 2019 - 2020</button>
-                    <div id="content4" class="accordion-content" style="display: none;">
-                        <h3>MIT Media Lab, Massachusetts Institute of Technology</h3>
-                        <p>Conduct research on how distributed robotics systems provide new ways to improve mobility, last-mile logistics, and health-related issues in urban areas. This research is conducted in the City Science group at the MIT Media Lab. </p>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-button">Postdoctoral Fellow - 2019 - 2020</button>
-                    <div id="content5" class="accordion-content" style="display: none;">
-                        <h3>MIT Media Lab, Massachusetts Institute of Technology</h3>
-                        <p>Conduct research on how distributed robotics systems provide new ways to improve mobility, last-mile logistics, and health-related issues in urban areas. This research is conducted in the City Science group at the MIT Media Lab. </p>
-                    </div>
-                </div>
-
-                <!-- Add more items as needed -->
+                {% endfor %}
             </div>
         </div>
 
@@ -63,7 +32,6 @@
             <p>Multidisciplinary experience in several countries, such as Spain, Germany, Belgium, United Kingdom, Japan, and United States.</p>
             <p>Leading teams and managing international projects in different areas: distributed robotics, machine learning, and artificial intelligence.</p>
         </div>
-
     </div>
 {% endblock %}
 

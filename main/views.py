@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Project, Publication, IntroText, EducationItem
+from .models import Project, Publication, IntroText, EducationItem, WorkItem
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
 from django.shortcuts import redirect
@@ -16,7 +16,10 @@ def education(request):
     })
 
 def work(request):
-    return render(request, 'main/work.html')
+    work_items = WorkItem.objects.all()
+    return render(request, 'main/work.html', {
+        'work_items': work_items
+    })
 
 def talks(request):
     return render(request, 'main/talks.html')

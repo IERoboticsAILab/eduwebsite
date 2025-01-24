@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Publication, ProjectImage, IntroText, EducationItem
+from .models import Project, Publication, ProjectImage, IntroText, EducationItem, WorkItem
 
 @admin.register(Publication)
 class PublicationAdmin(admin.ModelAdmin):
@@ -30,5 +30,10 @@ class ProjectAdmin(admin.ModelAdmin):
 
 @admin.register(EducationItem)
 class EducationItemAdmin(admin.ModelAdmin):
+    list_display = ('title', 'institution', 'date_range', 'order')
+    list_editable = ('order',)
+
+@admin.register(WorkItem)
+class WorkItemAdmin(admin.ModelAdmin):
     list_display = ('title', 'institution', 'date_range', 'order')
     list_editable = ('order',)
