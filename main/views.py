@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Project, Publication, IntroText, EducationItem, WorkItem
+from .models import Project, Publication, IntroText, EducationItem, WorkItem, Talk
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
 from django.shortcuts import redirect
@@ -22,7 +22,8 @@ def work(request):
     })
 
 def talks(request):
-    return render(request, 'main/talks.html')
+    talks = Talk.objects.all()
+    return render(request, 'main/talks.html', {'talks': talks})
 
 def contact(request):
     if request.method == 'POST':

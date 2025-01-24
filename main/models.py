@@ -77,3 +77,15 @@ class WorkItem(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.institution}"
+
+class Talk(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    video_url = models.URLField(help_text="Enter the YouTube embed URL (e.g., https://www.youtube.com/embed/VIDEO_ID)")
+    order = models.IntegerField(default=0, help_text="Order in which the talk should appear")
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return self.title
