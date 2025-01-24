@@ -1,12 +1,13 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Project, Publication
+from .models import Project, Publication, IntroText
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.contrib import messages
 
 def about(request):
-    return render(request, 'main/about.html')
+    intro_text = IntroText.objects.first()  # Assuming you want to display the first intro text
+    return render(request, 'main/about.html', {'intro_text': intro_text})
 
 def education(request):
     return render(request, 'main/education.html')

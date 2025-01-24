@@ -1,5 +1,8 @@
 from django.db import models
 
+class IntroText(models.Model):
+    text = models.TextField()
+
 class Publication(models.Model):
     title = models.CharField(max_length=200)
     authors = models.CharField(max_length=500)

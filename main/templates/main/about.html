@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load markdown_extras %}
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/about.css' %}">
 {% endblock %}
@@ -19,13 +20,10 @@
             </div>
 
             <div class="profile-text">
-                <h2 class="position-title">"Postdoctoral research fellow at Massachusetts Institute of Technology (MIT)"</h2>
+                {% if intro_text %}
+                    {{ intro_text.text|markdown|safe }}
+                {% endif %}
 
-                <p>Researcher specialized in robotics. I have collaborated on international projects in Japan, Europe and the United States, with world-class academics such as Alex ('Sandy') Pentland and Hiroshi Ishiguro. Currently conducting research and participating in projects on robotics and blockchain technology.</p>
-
-                <p>I have written in various generalist publications such as El País, El Mundo as well as scientific publications such as Advanced Robotics or Swarm Intelligence. My projects have had repercussions in several media outlets, like BBC, Wired, The Guardian or MIT Technology Review. I've given masterclasses and lectures at international congresses such as ICRA, EMTECH or GREX.</p>
-
-                <p>My goal is to build new distributed robotic systems that can change the way humanity feeds, communicates, transports and lives. These new decentralized technologies will have a great weight to build more open, fair and transparent ecosystems for their future users.</p>
                 <div class="profile-links">
                     <a href="#" class="download-btn">Download CV</a>
                     <a href="https://www.linkedin.com/in/eduardocastelloferrer" class="linkedin-btn">
