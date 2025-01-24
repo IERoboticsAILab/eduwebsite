@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Project, Publication, IntroText
+from .models import Project, Publication, IntroText, EducationItem
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
 from django.shortcuts import redirect
@@ -10,7 +10,10 @@ def about(request):
     return render(request, 'main/about.html', {'intro_text': intro_text})
 
 def education(request):
-    return render(request, 'main/education.html')
+    education_items = EducationItem.objects.all()
+    return render(request, 'main/education.html', {
+        'education_items': education_items
+    })
 
 def work(request):
     return render(request, 'main/work.html')

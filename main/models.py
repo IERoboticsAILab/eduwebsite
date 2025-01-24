@@ -51,3 +51,16 @@ class ProjectImage(models.Model):
 
     def __str__(self):
         return f"{self.project.title} - Image {self.order}"
+
+class EducationItem(models.Model):
+    title = models.CharField(max_length=200)
+    date_range = models.CharField(max_length=100)
+    institution = models.CharField(max_length=200)
+    description = models.TextField()
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{self.title} - {self.institution}"

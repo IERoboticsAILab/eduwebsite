@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Publication, ProjectImage, IntroText
+from .models import Project, Publication, ProjectImage, IntroText, EducationItem
 
 @admin.register(Publication)
 class PublicationAdmin(admin.ModelAdmin):
@@ -27,3 +27,8 @@ class ProjectAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description')
     filter_horizontal = ('publications',)
     inlines = [ProjectImageInline]  # Add this line to include the image upload interface
+
+@admin.register(EducationItem)
+class EducationItemAdmin(admin.ModelAdmin):
+    list_display = ('title', 'institution', 'date_range', 'order')
+    list_editable = ('order',)
