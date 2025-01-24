@@ -7,8 +7,5 @@ services:
       - "8082:8082"
     volumes:
       - .:/app
-      - django_data:/app/db
+      - ./db.sqlite3:/app/db.sqlite3
     restart: unless-stopped
-
-volumes:
-  django_data:
