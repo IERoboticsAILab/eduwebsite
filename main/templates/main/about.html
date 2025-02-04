@@ -25,7 +25,11 @@
                 {% endif %}
 
                 <div class="profile-links">
-                    <a href="#" class="download-btn">Download CV</a>
+                    {% if intro_text.cv_file %}
+                        <a href="{{ intro_text.cv_file.url }}" class="download-btn" download>Download CV</a>
+                    {% else %}
+                        <a href="#" class="download-btn">Download CV</a>
+                    {% endif %}
                     <a href="https://www.linkedin.com/in/eduardocastelloferrer" class="linkedin-btn">
                         <img src="{% static 'images/linkedinlogo.svg' %}" alt="LinkedIn" style="width: 40px; height: 40px;">
                     </a>

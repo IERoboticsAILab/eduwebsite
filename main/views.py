@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 
 def about(request):
-    intro_text = IntroText.objects.first()  # Assuming you want to display the first intro text
+    intro_text = IntroText.objects.first()  # This already works as is
     return render(request, 'main/about.html', {'intro_text': intro_text})
 
 def education(request):
