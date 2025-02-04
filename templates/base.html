@@ -5,8 +5,20 @@
 <head>
     <title>{% block title %}{% trans "My Personal Site" %}{% endblock %}</title>
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% block extra_css %}{% endblock %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const nav = document.querySelector('.main-nav');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
 </head>
 <body>
     <header>

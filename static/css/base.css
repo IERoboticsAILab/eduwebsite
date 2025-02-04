@@ -53,6 +53,24 @@ body {
     border-bottom: 1px solid #eee;
     padding: 15px 0;
     text-align: center;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.main-nav.scrolled {
+    background-color: black;
+    border-color: black;
+}
+
+.main-nav.scrolled a {
+    color: white;
+}
+
+.main-nav.scrolled a:hover {
+    color: #ccc;
 }
 
 .main-nav a {
