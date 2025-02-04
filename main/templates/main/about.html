@@ -30,9 +30,21 @@
                     {% else %}
                         <a href="#" class="download-btn">Download CV</a>
                     {% endif %}
-                    <a href="https://www.linkedin.com/in/eduardocastelloferrer" class="linkedin-btn">
-                        <img src="{% static 'images/linkedinlogo.svg' %}" alt="LinkedIn" style="width: 40px; height: 40px;">
-                    </a>
+                    {% if intro_text.linkedin_url %}
+                        <a href="{{ intro_text.linkedin_url }}" class="linkedin-btn" target="_blank">
+                            <img src="{% static 'images/linkedinlogo.svg' %}" alt="LinkedIn" style="width: 40px; height: 40px;">
+                        </a>
+                    {% endif %}
+                    {% if intro_text.scholar_url %}
+                        <a href="{{ intro_text.scholar_url }}" class="linkedin-btn" target="_blank">
+                            <img src="{% static 'images/scholarlogo.svg' %}" alt="Google Scholar" style="width: 40px; height: 40px;">
+                        </a>
+                    {% endif %}
+                    {% if intro_text.email %}
+                        <a href="mailto:{{ intro_text.email }}" class="linkedin-btn">
+                            <img src="{% static 'images/emaillogo.svg' %}" alt="Email" style="width: 40px; height: 40px;">
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
