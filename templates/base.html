@@ -10,13 +10,19 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const nav = document.querySelector('.main-nav');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 100) {
+            const navTop = nav.offsetTop;  // Get initial position of nav
+
+            function handleScroll() {
+                if (window.scrollY > navTop) {
+                    nav.classList.add('fixed-nav');
                     nav.classList.add('scrolled');
                 } else {
+                    nav.classList.remove('fixed-nav');
                     nav.classList.remove('scrolled');
                 }
-            });
+            }
+
+            window.addEventListener('scroll', handleScroll);
         });
     </script>
 </head>
@@ -30,17 +36,17 @@
                 </div>
             </div>
         </div>
-
-        <nav class="main-nav">
-            <a href="{% url 'about' %}">{% trans "ABOUT ME" %}</a>
-            <a href="{% url 'work' %}">{% trans "WORK" %}</a>
-            <a href="{% url 'education' %}">{% trans "EDUCATION" %}</a>
-            <a href="{% url 'projects' %}">{% trans "PROJECTS" %}</a>
-            <a href="{% url 'talks' %}">{% trans "TALKS" %}</a>
-            <a href="{% url 'publications' %}">{% trans "PUBLICATIONS" %}</a>
-            <a href="{% url 'contact' %}">{% trans "CONTACT" %}</a>
-        </nav>
     </header>
+
+    <nav class="main-nav">
+        <a href="{% url 'about' %}">{% trans "ABOUT ME" %}</a>
+        <a href="{% url 'work' %}">{% trans "WORK" %}</a>
+        <a href="{% url 'education' %}">{% trans "EDUCATION" %}</a>
+        <a href="{% url 'projects' %}">{% trans "PROJECTS" %}</a>
+        <a href="{% url 'talks' %}">{% trans "TALKS" %}</a>
+        <a href="{% url 'publications' %}">{% trans "PUBLICATIONS" %}</a>
+        <a href="{% url 'contact' %}">{% trans "CONTACT" %}</a>
+    </nav>
 
     <main>
         {% block content %}
