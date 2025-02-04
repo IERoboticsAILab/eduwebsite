@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Publication, ProjectImage, IntroText, EducationItem, WorkItem, Talk
+from .models import Project, Publication, ProjectImage, IntroText, EducationItem, WorkItem, Talk, SiteSettings
 
 @admin.register(Publication)
 class PublicationAdmin(admin.ModelAdmin):
@@ -42,3 +42,13 @@ class WorkItemAdmin(admin.ModelAdmin):
 class TalkAdmin(admin.ModelAdmin):
     list_display = ('title', 'order')
     list_editable = ('order',)
+
+@admin.register(SiteSettings)
+class SiteSettingsAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        # Prevent creating multiple settings
+        return not SiteSettings.objects.exists()
+
+    def has_delete_permission(self, request, obj=None):
+        # Prevent deleting the settings
+        return False

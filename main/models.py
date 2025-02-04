@@ -2,7 +2,20 @@ from django.db import models
 
 class IntroText(models.Model):
     text = models.TextField()
+class SiteSettings(models.Model):
+    title = models.CharField(('Site Title'), max_length=200, default='Eduardo Castello')
+    subtitle = models.CharField(('Subtitle'), max_length=200, default='Postdoctoral research fellow at MIT')
 
+    class Meta:
+        verbose_name = ('Site Settings')
+        verbose_name_plural = ('Site Settings')
+
+    def __str__(self):
+        return 'Site Settings'
+
+    @classmethod
+    def get_settings(cls):
+        return cls.objects.first() or cls.objects.create()
 class Publication(models.Model):
     title = models.CharField(max_length=200)
     authors = models.CharField(max_length=500)
