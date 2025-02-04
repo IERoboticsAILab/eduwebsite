@@ -104,6 +104,7 @@ class Talk(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     video_url = models.URLField(help_text="Enter the YouTube embed URL (e.g., https://www.youtube.com/embed/VIDEO_ID)")
+    date = models.DateField(blank=True, null=True)
     order = models.IntegerField(default=0, help_text="Order in which the talk should appear")
 
     class Meta:

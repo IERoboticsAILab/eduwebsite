@@ -19,6 +19,9 @@
                 </div>
                 <div class="video-description">
                     <h2>{{ talk.title }}</h2>
+                    {% if talk.date %}
+                        <p class="talk-date">{{ talk.date|date:"F j, Y" }}</p>
+                    {% endif %}
                     <p>{{ talk.description }}</p>
                 </div>
             </div>
