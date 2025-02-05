@@ -21,12 +21,8 @@ from main import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatterns = [
-    path('i18n/', include('django.conf.urls.i18n')),  # Language switch URL
-]
 
-# Wrap your existing URLs with i18n_patterns
-urlpatterns += i18n_patterns(
+urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.about, name='about'),
     path('education/', views.education, name='education'),
@@ -36,7 +32,6 @@ urlpatterns += i18n_patterns(
     path('publications/', views.publications, name='publications'),
     path('talks/', views.talks, name='talks'),
     path('contact/', views.contact, name='contact'),
-    prefix_default_language=True,  # Changed to True to ensure consistent URL patterns
-)
+]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
