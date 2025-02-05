@@ -17,7 +17,7 @@
             <div class="accordion">
                 {% for item in work_items %}
                 <div class="accordion-item">
-                    <button class="accordion-button">{{ item.title }} - {{ item.date_range }}</button>
+                    <button class="accordion-button"><strong>{{ item.title }}</strong> - {{ item.institution }} | {{ item.date_range }}</button>
                     <div id="content{{ forloop.counter }}" class="accordion-content" style="display: none;">
                         <h3>{{ item.institution }}</h3>
                         <p>{{ item.description|markdown|safe }}</p>
