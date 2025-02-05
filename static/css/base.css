@@ -141,7 +141,7 @@ footer {
 
   .header-subtitle {
     padding: 0.3rem 1rem;
-    color: #666;
+    color: #d5d5d5;
     font-style: italic;
     margin-left: 2rem;
 
@@ -162,10 +162,12 @@ footer {
     padding-left: 40px;
 }
 
+.title-text h1 {
+    color: #d5d5d5;
+}
 
-/* Remove the old top-bar if it exists */
-.top-bar {
-    display: none;
+.title-text p {
+    color: #d5d5d5;
 }
 
 .language-icons {
