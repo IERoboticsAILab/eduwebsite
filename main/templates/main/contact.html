@@ -11,35 +11,6 @@
     <div class="cal-embed-container">
         <div class="cal-inline-widget" data-cal-link="eduardo.castello/meeting-30-mins"></div>
     </div>
-    <div class="contact-container">
-        <p>Feel free to reach out to me using the form below or schedule a meeting directly!</p>
-
-        <form method="POST" class="contact-form">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-
-            <div class="form-group">
-                <label for="subject">Subject:</label>
-                <input type="text" id="subject" name="subject" required>
-            </div>
-
-            <div class="form-group">
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-
-            <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-
-    </div>
 
     <script>(function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];typeof namespace==="string"?(cal.ns[namespace]=api)&&p(api,ar):p(cal,ar);return}p(cal,ar)};C.Cal.ns={}})(window,"https://app.cal.com/embed/embed.js","init");
         Cal("init", {origin:"https://cal.com"});
