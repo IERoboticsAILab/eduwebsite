@@ -2,11 +2,7 @@
     {% for publication in publications %}
         <div class="publication-item">
             <div class="publication-grid">
-                {% if publication.image %}
-                    <div class="publication-image">
-                        <img src="{{ publication.image.url }}" alt="{{ publication.title }}" style="width: 400px; height: auto;" />
-                    </div>
-                {% endif %}
+
 
                 <div class="publication-content">
                     <h3 class="publication-title">
@@ -21,18 +17,36 @@
 
                     <p class="publication-meta">
                         <span class="journal">{{ publication.journal }}</span>
-                        <span class="publication-date">{{ publication.publication_date|date:"Y" }}</span>
+                        {% if publication.publication_date %}
+                            · <span class="publication-date">{{ publication.publication_date|date:"Y" }}</span>
+                        {% endif %}
                         {% if publication.doi %}
-                            <span class="doi">
+                            · <span class="doi">
                                 <a href="https://doi.org/{{ publication.doi }}" target="_blank">DOI: {{ publication.doi }}</a>
                             </span>
                         {% endif %}
                     </p>
 
-                    <div class="publication-abstract">
+                    {% if publication.keywords %}
+                        <div class="publication-keywords">
+                            {% for keyword in publication.keywords.all %}
+                                <span>{{ keyword.name }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div class="publication-abstract" data-abstract-id="{{ forloop.counter }}">
                         <p>{{ publication.abstract }}</p>
                     </div>
+                    <div class="abstract-toggle" onclick="toggleAbstract({{ forloop.counter }})">
+                        Show more
+                    </div>
                 </div>
+                {% if publication.image %}
+                    <div class="publication-image">
+                        <img src="{{ publication.image.url }}" alt="{{ publication.title }}" />
+                    </div>
+                {% endif %}
             </div>
         </div>
     {% empty %}
@@ -48,3 +62,18 @@
         </div>
     {% endif %}
 </div>
+
+<script>
+function toggleAbstract(id) {
+    const abstract = document.querySelector(`[data-abstract-id="${id}"]`);
+    const toggle = abstract.nextElementSibling;
+
+    if (abstract.classList.contains('expanded')) {
+        abstract.classList.remove('expanded');
+        toggle.textContent = 'Show more';
+    } else {
+        abstract.classList.add('expanded');
+        toggle.textContent = 'Show less';
+    }
+}
+</script>

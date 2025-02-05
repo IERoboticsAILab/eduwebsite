@@ -1,42 +1,84 @@
 .publication-item {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
   border-bottom: 1px solid #eee;
 }
 
 .publication-title {
   margin-top: 0;
   margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 600;
 }
-
 
 .publication-title a {
   color: #333;
   text-decoration: none;
-  font-size: 1.2rem;
 }
 
-.publication-title a:hover {
-  color: #007bff;
+.publication-authors {
+  color: #555;
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.publication-meta {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
 }
 
 .publication-grid {
-  margin-top: 2rem;
   display: grid;
-  grid-template-columns: minmax(200px, 1fr) 3fr;
+  grid-template-columns: 4fr minmax(120px, 1fr);
   gap: 2rem;
   align-items: start;
 }
 
 .publication-image img {
-  max-width: 100%;
+  max-width: 150px;
   height: auto;
   border-radius: 4px;
 }
 
-/* Make it responsive for mobile devices */
+.publication-keywords {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.publication-keywords span {
+  background: #f0f0f0;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  margin-right: 0.5rem;
+  color: #666;
+}
+
+.publication-abstract {
+  position: relative;
+  max-height: 4.5em;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.publication-abstract.expanded {
+  max-height: 1000px;
+}
+
+.abstract-toggle {
+  color: #007bff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
 @media (max-width: 768px) {
   .publication-grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .publication-image img {
+    max-width: 120px;
   }
 }
