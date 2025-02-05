@@ -1,0 +1,60 @@
+.experience-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.experience-intro {
+  margin-bottom: 40px;
+}
+
+.experience-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.work-section,
+.education-section {
+  background: #fff;
+}
+
+.work-section h2,
+.education-section h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.accordion {
+  width: 100%;
+}
+
+.accordion-item {
+  margin-bottom: 10px;
+}
+
+.accordion-button {
+  width: 100%;
+  text-align: left;
+  padding: 15px;
+  background-color: #f1f1f1;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+.accordion-button:hover {
+  background-color: #ddd;
+}
+
+.accordion-content {
+  padding: 15px;
+  background-color: #f9f9f9;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .experience-sections {
+      grid-template-columns: 1fr 1fr;
+  }
+}

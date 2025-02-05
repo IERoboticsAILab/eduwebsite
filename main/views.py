@@ -9,18 +9,6 @@ def about(request):
     intro_text = IntroText.objects.first()  # This already works as is
     return render(request, 'main/about.html', {'intro_text': intro_text})
 
-def education(request):
-    education_items = EducationItem.objects.all()
-    return render(request, 'main/education.html', {
-        'education_items': education_items
-    })
-
-def work(request):
-    work_items = WorkItem.objects.all()
-    return render(request, 'main/work.html', {
-        'work_items': work_items
-    })
-
 def talks(request):
     talks = Talk.objects.all()
     return render(request, 'main/talks.html', {'talks': talks})
@@ -73,3 +61,11 @@ def publications(request):
     if request.htmx:
         return render(request, 'main/partials/publication-list.html', {'publications': publications})
     return render(request, 'main/publications.html', {'publications': publications})
+
+def experience(request):
+    education_items = EducationItem.objects.all()
+    work_items = WorkItem.objects.all()
+    return render(request, 'main/experience.html', {
+        'education_items': education_items,
+        'work_items': work_items
+    })
