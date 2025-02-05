@@ -29,11 +29,9 @@ body {
 /* Site title */
 .site-title {
     text-align: left;
-    padding: 30px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
     position: relative;
     z-index: 999;
+    padding: 30px 20px;
 }
 
 .site-title h1 {
@@ -158,7 +156,12 @@ footer {
 
 .title-text {
     flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 40px;
 }
+
 
 /* Remove the old top-bar if it exists */
 .top-bar {
