@@ -4,6 +4,7 @@
   border-bottom: 1px solid #eee;
 }
 
+
 .publication-title {
   margin-top: 0;
   margin-bottom: 0.5rem;
@@ -31,14 +32,15 @@
 .publication-grid {
   display: grid;
   grid-template-columns: 4fr minmax(120px, 1fr);
-  gap: 2rem;
   align-items: start;
+  gap: 2rem;
 }
 
 .publication-image img {
   max-width: 150px;
   height: auto;
   border-radius: 4px;
+  margin-left: 2rem;
 }
 
 .publication-keywords {
@@ -55,6 +57,7 @@
 }
 
 .publication-abstract {
+  text-align: justify;
   position: relative;
   max-height: 4.5em;
   overflow: hidden;
