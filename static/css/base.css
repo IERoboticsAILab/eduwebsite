@@ -208,3 +208,7 @@ header {
     position: relative;
     width: 100%;
 }
+
+.active {
+    font-weight: bold;
+}
