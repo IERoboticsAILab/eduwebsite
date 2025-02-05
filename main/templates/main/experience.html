@@ -11,9 +11,7 @@
 {% block content %}
     <div class="experience-container">
         <div class="experience-intro">
-            <h2>Experience</h2>
-            <p>Multidisciplinary experience in several countries, such as Spain, Germany, Belgium, United Kingdom, Japan, and United States.</p>
-            <p>Leading teams and managing international projects in different areas: distributed robotics, machine learning, and artificial intelligence.</p>
+            <p>{{ experience_description.description|markdown|safe }}</p>
         </div>
 
         <div class="experience-sections">

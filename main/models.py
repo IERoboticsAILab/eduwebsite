@@ -75,6 +75,20 @@ class ProjectImage(models.Model):
     def __str__(self):
         return f"{self.project.title} - Image {self.order}"
 
+class ExperienceDescription(models.Model):
+    description = models.TextField()
+
+    class Meta:
+        verbose_name_plural = "Experience Description"
+
+    def save(self, *args, **kwargs):
+        if not self.pk and ExperienceDescription.objects.exists():
+            return ExperienceDescription.objects.first()
+        return super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"Experience Description"
+
 class EducationItem(models.Model):
     title = models.CharField(max_length=200)
     date_range = models.CharField(max_length=100)

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Project, Publication, IntroText, EducationItem, WorkItem, Talk
+from .models import Project, Publication, IntroText, EducationItem, WorkItem, Talk, ExperienceDescription
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
 from django.shortcuts import redirect
@@ -65,7 +65,9 @@ def publications(request):
 def experience(request):
     education_items = EducationItem.objects.all()
     work_items = WorkItem.objects.all()
+    experience_description = ExperienceDescription.objects.first()
     return render(request, 'main/experience.html', {
         'education_items': education_items,
-        'work_items': work_items
+        'work_items': work_items,
+        'experience_description': experience_description
     })

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Publication, ProjectImage, IntroText, EducationItem, WorkItem, Talk, SiteSettings
+from .models import Project, Publication, ProjectImage, IntroText, EducationItem, WorkItem, Talk, SiteSettings, ExperienceDescription
 
 @admin.register(Publication)
 class PublicationAdmin(admin.ModelAdmin):
@@ -52,3 +52,7 @@ class SiteSettingsAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         # Prevent deleting the settings
         return False
+
+@admin.register(ExperienceDescription)
+class ExperienceDescriptionAdmin(admin.ModelAdmin):
+    list_display = ('description',)
