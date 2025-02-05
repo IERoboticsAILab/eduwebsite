@@ -14,6 +14,7 @@ class IntroText(models.Model):
 class SiteSettings(models.Model):
     title = models.CharField(('Site Title'), max_length=200, default='Eduardo Castello')
     subtitle = models.CharField(('Subtitle'), max_length=200, default='Postdoctoral research fellow at MIT')
+    banner_image = models.ImageField(('Banner Image'), upload_to='banners/', blank=True, null=True)
 
     class Meta:
         verbose_name = ('Site Settings')
