@@ -6,6 +6,7 @@ class IntroText(models.Model):
     linkedin_url = models.URLField(blank=True, null=True)
     scholar_url = models.URLField(blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
+    cyphy_url = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.text

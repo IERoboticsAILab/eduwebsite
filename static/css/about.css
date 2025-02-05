@@ -50,6 +50,7 @@
 
 .profile-links {
   display: flex;
+  align-items: center;
   gap: 1rem;
   margin-top: 2rem;
 }
@@ -65,19 +66,21 @@
   text-decoration: none;
   font-weight: bold;
   transition: background-color 0.3s;
+  max-height: 40px;
 }
 
 .download-btn:hover {
   background-color: #333;
 }
 
-.linkedin-btn {
+.social-btn {
   background-color: #fff;
   padding: 0.8rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
+
 
 /* Responsive design */
 @media (max-width: 768px) {
