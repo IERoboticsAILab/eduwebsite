@@ -41,6 +41,10 @@
   cursor: pointer;
   outline: none;
   transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .accordion-button:hover {
@@ -57,4 +61,16 @@
   .experience-sections {
       grid-template-columns: 1fr 1fr;
   }
+}
+
+
+.title-institution {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.date-range {
+  margin-left: 20px;
+  text-align: right;
+  font-weight: 500;
 }
