@@ -1,11 +1,12 @@
 from django.contrib import admin
-from .models import Project, Publication, ProjectImage, IntroText, EducationItem, WorkItem, Talk, SiteSettings, ExperienceDescription
+from .models import Project, Publication, ProjectImage, IntroText, EducationItem, WorkItem, Talk, SiteSettings, ExperienceDescription, Keyword
 
 @admin.register(Publication)
 class PublicationAdmin(admin.ModelAdmin):
-    list_display = ('title', 'authors', 'publication_date', 'journal')
+    list_display = ('title', 'journal', 'publication_date')
     search_fields = ('title', 'authors', 'abstract')
-    list_filter = ('publication_date', 'journal')
+    filter_horizontal = ('keywords',)
+    list_filter = ('publication_date', 'journal', 'keywords')
     date_hierarchy = 'publication_date'
 
 @admin.register(IntroText)
@@ -56,3 +57,9 @@ class SiteSettingsAdmin(admin.ModelAdmin):
 @admin.register(ExperienceDescription)
 class ExperienceDescriptionAdmin(admin.ModelAdmin):
     list_display = ('description',)
+
+class KeywordAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+admin.site.register(Keyword, KeywordAdmin)

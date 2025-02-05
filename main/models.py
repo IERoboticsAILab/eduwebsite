@@ -26,6 +26,15 @@ class SiteSettings(models.Model):
     def get_settings(cls):
         return cls.objects.first() or cls.objects.create()
 
+class Keyword(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
+
 class Publication(models.Model):
     title = models.CharField(max_length=200)
     authors = models.CharField(max_length=500)
@@ -37,6 +46,7 @@ class Publication(models.Model):
     link = models.URLField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    keywords = models.ManyToManyField(Keyword, blank=True, related_name='publications')
 
     class Meta:
         ordering = ['-publication_date']
