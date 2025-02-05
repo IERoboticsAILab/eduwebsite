@@ -107,21 +107,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-
-TIME_ZONE = 'UTC'
-USE_TZ = True
-
-# Available languages
-LANGUAGES = (
-    ('en', 'English'),
-    ('es', 'Spanish'),
-)
-
-# Locale paths
-LOCALE_PATHS = [
-    BASE_DIR / 'locale',
-]
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
