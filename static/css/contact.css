@@ -54,3 +54,62 @@
     min-width: 320px;
     border-radius: 8px;
 }
+
+.location-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.address-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.school-container {
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.school-logo {
+    width: 300px;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.location-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.address-text {
+    color: #666;
+    line-height: 1.5;
+    margin-left: 0.75rem;
+}
+
+.address-container {
+    display: flex;
+    align-items: middle ;
+}
+
+.location-icon {
+    width: 24px;
+    height: 24px;
+    color: #666;
+    flex-shrink: 0;
+    margin-top: 3px;
+}

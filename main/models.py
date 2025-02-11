@@ -138,3 +138,15 @@ class Talk(models.Model):
 
     def __str__(self):
         return self.title
+
+class OpenPositions(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    requirements = models.TextField()
+    contact_email = models.EmailField()
+
+    class Meta:
+        verbose_name_plural = "Open Positions"
+
+    def __str__(self):
+        return self.title

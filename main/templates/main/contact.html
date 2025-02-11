@@ -1,23 +1,71 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Contact{% endblock %}
-
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
 {% endblock %}
-
 {% block content %}
-    <div class="cal-embed-container">
-        <div class="cal-inline-widget" data-cal-link="eduardo.castello/meeting-30-mins"></div>
+<div class="contact-container">
+  <div class="contact-grid">
+    <div class="school-container">
+      <img src="{% static 'images/school.png' %}" alt="IE School of Science and Technology" class="school-logo">
+      <h2 class="location-title">Physical Location</h2>
+      <div class="address-container">
+        <svg xmlns="http://www.w3.org/2000/svg" class="location-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+        </svg>
+        <p class="address-text">School of Science and Technology, IE Tower Floor 5<br>P.º de la Castellana, 259E, Fuencarral-El Pardo, 28046 Madrid, Spain</p>
+      </div>
     </div>
 
-    <script>(function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];typeof namespace==="string"?(cal.ns[namespace]=api)&&p(api,ar):p(cal,ar);return}p(cal,ar)};C.Cal.ns={}})(window,"https://app.cal.com/embed/embed.js","init");
-        Cal("init", {origin:"https://cal.com"});
+    <div>
 
-        Cal("inline", {
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97116.19538809614!2d-3.7714923655639856!3d40.47789524178492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4228c1e451ac01%3A0xa59dc956c1ed626a!2sIE%20University%20-%20IE%20Tower!5e0!3m2!1sen!2ses!4v1729895960458!5m2!1sen!2ses"
+        width="600"
+        height="450"
+        title="IE University Location Map">
+      </iframe>
+    </div>
+  </div>
+
+    <div class="cal-embed-container">
+      <div class="cal-inline-widget" data-cal-link="eduardo.castello/meeting-30-mins"></div>
+    </div>
+
+  <script>
+    (function(C,A,L){
+      let p=function(a,ar){a.q.push(ar)};
+      let d=C.document;
+      C.Cal=C.Cal||function(){
+        let cal=C.Cal;
+        let ar=arguments;
+        if(!cal.loaded){
+          cal.ns={};
+          cal.q=cal.q||[];
+          d.head.appendChild(d.createElement("script")).src=A;
+          cal.loaded=true
+        }
+        if(ar[0]===L){
+          const api=function(){p(api,arguments)};
+          const namespace=ar[1];
+          api.q=api.q||[];
+          typeof namespace==="string"?(cal.ns[namespace]=api)&&p(api,ar):p(cal,ar);
+          return
+        }
+        p(cal,ar)
+      };
+      C.Cal.ns={}
+    })(window,"https://app.cal.com/embed/embed.js","init");
+
+    // Wrap the initialization in a DOMContentLoaded event
+    document.addEventListener('DOMContentLoaded', function() {
+      Cal("init", {origin:"https://cal.com"});
+      Cal("inline", {
         elementOrSelector: ".cal-inline-widget",
         calLink: "eduardo.castello/meeting-30-mins",
-        });
-    </script>
+      });
+    });
+  </script>
+</div>
 {% endblock %}
