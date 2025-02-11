@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load markdown_extras %}
 {% block title %}Contact{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/contact.css' %}">
@@ -31,9 +32,59 @@
     </div>
   </div>
 
-    <div class="cal-embed-container">
-      <div class="cal-inline-widget" data-cal-link="eduardo.castello/meeting-30-mins"></div>
+  <div class="open-positions-section">
+    <h1>Open positions</h1>
+    <p class="positions-intro">We are always looking for new talents to join our team. If you are interested in any of the positions listed below, please contact us.</p>
+
+    <div class="positions-grid">
+      {% for position in open_positions %}
+      <div class="position-card">
+        <h2>{{ position.title }}</h2>
+
+        <div class="position-section">
+          <h3>DESCRIPTION</h3>
+          {{ position.description| markdown | safe }}
+        </div>
+
+        <div class="position-section">
+          <h3>REQUIREMENTS</h3>
+          {{ position.requirements| markdown | safe }}
+        </div>
+
+        <div class="position-section">
+          <h3>APPLICATION INSTRUCTIONS</h3>
+          {{ position.instructions| markdown | safe }}
+
+          <div class="application-details">
+            <div class="email-container">
+              <svg xmlns="http://www.w3.org/2000/svg" class="email-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+              </svg>
+              <a href="mailto:{{ position.contact_email }}" class="email-link">
+                {{ position.contact_email }}
+              </a>
+            </div>
+            <div class="deadline-container">
+              <svg xmlns="http://www.w3.org/2000/svg" class="deadline-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+              </svg>
+              <p class="deadline-text">Deadline: {{ position.deadline }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
+  </div>
+
+  <div class="calendar-section">
+    <h1>Office hours</h1>
+    <div class="cal-embed-container">
+      <div class="cal-inline-widget" data-cal-link="eduardo.castello/meeting-30-mins" style="min-height: 700px; width: 100%;"></div>
+    </div>
+  </div>
+
 
   <script>
     (function(C,A,L){
@@ -66,6 +117,14 @@
       Cal("inline", {
         elementOrSelector: ".cal-inline-widget",
         calLink: "eduardo.castello/meeting-30-mins",
+        config: {
+          layout: 'month_view',
+          width: '100%',
+          height: '700px',
+          customComponent: {
+            enabled: true
+          }
+        }
       });
     });
   </script>

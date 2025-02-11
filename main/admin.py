@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Publication, ProjectImage, IntroText, EducationItem, WorkItem, Talk, SiteSettings, ExperienceDescription, Keyword
+from .models import Project, Publication, ProjectImage, IntroText, EducationItem, WorkItem, Talk, SiteSettings, ExperienceDescription, Keyword, OpenPositions
 
 @admin.register(Publication)
 class PublicationAdmin(admin.ModelAdmin):
@@ -8,6 +8,10 @@ class PublicationAdmin(admin.ModelAdmin):
     filter_horizontal = ('keywords',)
     list_filter = ('publication_date', 'journal', 'keywords')
     date_hierarchy = 'publication_date'
+
+@admin.register(OpenPositions)
+class OpenPositionsAdmin(admin.ModelAdmin):
+    list_display = ('title',)
 
 @admin.register(IntroText)
 class IntroTextAdmin(admin.ModelAdmin):

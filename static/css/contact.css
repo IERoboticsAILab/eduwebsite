@@ -121,3 +121,113 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.open-positions-section {
+    margin-top: 4rem;
+}
+
+.open-positions-section h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.positions-intro {
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.positions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.position-card {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.position-card h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.position-section {
+    margin-bottom: 1.5rem;
+}
+
+.position-section h3 {
+    color: #666;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.application-details {
+    margin-top: 1rem;
+}
+
+.email-link {
+    display: flex;
+    align-items: center;
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.email-icon {
+    margin-right: 0.5rem;
+}
+
+.email-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .positions-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.deadline-container {
+    display: flex;
+    align-items: center;
+    color: #666;
+}
+
+.deadline-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+}
+
+.deadline-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.email-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+}
+
+.email-link {
+    display: flex;
+    align-items: center;
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+
+.email-container {
+    display: flex;
+    align-items: center;
+    color: #666;
+}
