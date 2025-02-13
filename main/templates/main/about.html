@@ -11,19 +11,16 @@
     <div class="about-content">
         <div class="profile-section">
             <div class="profile-image">
-                <img src="{% static 'images/Headshot2021.jpg' %}" alt="Profile Photo">
-            </div>
-
-            <div class="profile-text">
-                {% if intro_text %}
-                    {{ intro_text.text|markdown|safe }}
-                {% endif %}
-
+                <img src="{% static 'images/Headshot2021.jpg' %}" class="headshot" alt="Profile Photo">
                 <div class="profile-links">
                     {% if intro_text.cv_file %}
-                        <a href="{{ intro_text.cv_file.url }}" class="download-btn" download>Download CV</a>
+                        <a href="{{ intro_text.cv_file.url }}" class="social-btn" download>
+                            <img src="{% static 'images/cvlogo.svg' %}" alt="CV" style="width: 40px; height: 40px;">
+                        </a>
                     {% else %}
-                        <a href="#" class="download-btn">Download CV</a>
+                        <a href="#" class="download-btn">
+                            <img src="{% static 'images/cvlogo.svg' %}" alt="CV" style="width: 40px; height: 40px;">
+                        </a>
                     {% endif %}
                     {% if intro_text.linkedin_url %}
                         <a href="{{ intro_text.linkedin_url }}" class="social-btn" target="_blank">
@@ -42,10 +39,17 @@
                     {% endif %}
                     {% if intro_text.cyphy_url %}
                         <a href="{{ intro_text.cyphy_url }}" class="social-btn" target="_blank">
-                            <img src="{% static 'images/cyphylogo.svg' %}" alt="Cyphy" style="width: 60px; height: 60px;">
+                            <img src="{% static 'images/cyphylogo.svg' %}" alt="Cyphy" style="width: 40px; height: 40px;">
                         </a>
                     {% endif %}
                 </div>
+            </div>
+
+            <div class="profile-text">
+                {% if intro_text %}
+                    {{ intro_text.text|markdown|safe }}
+                {% endif %}
+
             </div>
         </div>
 

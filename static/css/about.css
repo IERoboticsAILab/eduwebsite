@@ -17,7 +17,15 @@
   align-items: start;
 }
 
-.profile-image img {
+.profile-image {
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.headshot {
   width: 100%;
   max-width: 350px;
   height: auto;
@@ -25,6 +33,7 @@
   padding: 0.5rem;
   background: #fff;
   margin-top: 2rem;
+  margin-bottom: 2rem;
   margin-left: 0rem;
 }
 
@@ -51,8 +60,10 @@
 .profile-links {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-top: 2rem;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0.8rem;
+  padding: 0 0.5rem;
 }
 
 .download-btn {
@@ -75,10 +86,12 @@
 
 .social-btn {
   background-color: #fff;
-  padding: 0.8rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex: 1;
+  padding: 0.5rem;
+  min-width: 40px;
 }
 
 
