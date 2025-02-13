@@ -14,16 +14,16 @@
                 <img src="{% static 'images/Headshot2021.jpg' %}" class="headshot" alt="Profile Photo">
                 <div class="profile-links">
                     {% if intro_text.cv_file %}
-                        <a href="{{ intro_text.cv_file.url }}" class="social-btn" download>
+                        <a href="{{ intro_text.cv_file.url }}" class="social-btn cv-btn" download>
                             <img src="{% static 'images/cvlogo.svg' %}" alt="CV" style="width: 40px; height: 40px;">
                         </a>
                     {% else %}
-                        <a href="#" class="download-btn">
+                        <a href="#" class="social-btn cv-btn">
                             <img src="{% static 'images/cvlogo.svg' %}" alt="CV" style="width: 40px; height: 40px;">
                         </a>
                     {% endif %}
                     {% if intro_text.linkedin_url %}
-                        <a href="{{ intro_text.linkedin_url }}" class="social-btn" target="_blank">
+                        <a href="{{ intro_text.linkedin_url }}" class="social-btn linkedin-btn" target="_blank">
                             <img src="{% static 'images/linkedinlogo.svg' %}" alt="LinkedIn" style="width: 40px; height: 40px;">
                         </a>
                     {% endif %}
@@ -38,7 +38,7 @@
                         </a>
                     {% endif %}
                     {% if intro_text.cyphy_url %}
-                        <a href="{{ intro_text.cyphy_url }}" class="social-btn" target="_blank">
+                        <a href="{{ intro_text.cyphy_url }}" class="social-btn cyphy-btn" target="_blank">
                             <img src="{% static 'images/cyphylogo.svg' %}" alt="Cyphy" style="width: 40px; height: 40px;">
                         </a>
                     {% endif %}
