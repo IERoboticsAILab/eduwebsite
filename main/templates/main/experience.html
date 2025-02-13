@@ -56,17 +56,21 @@
 
 {% block extra_js %}
 <script>
-    document.addEventListener('click', function (e) {
-        if (e.target.classList.contains('accordion-button')) {
-            const contents = document.querySelectorAll('.accordion-content');
-            contents.forEach(content => {
-                if (content !== e.target.nextElementSibling) {
+    document.addEventListener('DOMContentLoaded', function() {
+        const accordionButtons = document.querySelectorAll('.accordion-button');
+
+        accordionButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const targetContent = this.nextElementSibling;
+                const isCurrentlyOpen = targetContent.style.display === 'block';
+
+                document.querySelectorAll('.accordion-content').forEach(content => {
                     content.style.display = 'none';
-                }
+                });
+
+                targetContent.style.display = isCurrentlyOpen ? 'none' : 'block';
             });
-            const targetContent = e.target.nextElementSibling;
-            targetContent.style.display = targetContent.style.display === 'block' ? 'none' : 'block';
-        }
+        });
     });
 </script>
 {% endblock %}
