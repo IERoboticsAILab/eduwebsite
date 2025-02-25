@@ -3,6 +3,7 @@
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/project_detail.css' %}">
+  <link rel="stylesheet" href="{% static 'css/projects.css' %}">
 {% endblock %}
 
 {% block title %}{{ research_line.title }}{% endblock %}
@@ -67,25 +68,37 @@
         {% endif %}
 
     {% if research_line.projects.exists %}
-            <h3>Related Publications</h3>
-            <div class="publications-list">
+            <h3>Related Projects</h3>
+            <div class="projects-grid">
                 {% for project in research_line.projects.all %}
-                    <div class="publication-card">
-                        {% if project.image %}
-                            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="publication-image">
-                        {% endif %}
-                        <div class="publication-content">
-                            <div class="publication-date">{{ project.date|date:"m-Y" }}</div>
-                            <h4 class="publication-title">
-                                <a href={% url 'project_detail' project.pk %}>
-                                    {{project.title }}
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            {% if project.image %}
+                                <a href="{% url 'project_detail' project.pk %}">
+                                    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
                                 </a>
-                            </h4>
+                            {% endif %}
+                            <h3>
+                                <a href="{% url 'project_detail' project.pk %}">{{ project.title }}</a>
+                            </h3>
+                        </div>
+                        <div class="project-card-body">
+                            <p class="project-tagline">Research Project</p>
+                            <p class="project-date">
+                                {{ project.date|date:"M Y" }}
+                            </p>
+                        </div>
+                        <div class="project-card-footer">
+                            {% if project.github_link %}
+                                <a href="{{ project.github_link }}" target="_blank" class="project-link">GitHub</a>
+                            {% endif %}
+                            {% if project.video_url %}
+                                <a href="{{ project.video_url }}" target="_blank" class="project-link">Video</a>
+                            {% endif %}
                         </div>
                     </div>
                 {% endfor %}
             </div>
         {% endif %}
-
     </div>
 {% endblock %}
