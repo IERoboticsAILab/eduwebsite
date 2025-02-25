@@ -54,6 +54,12 @@
   margin-bottom: 8px;
 }
 
+.project-tagline {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
 .project-tech {
   color: #444;
   font-size: 0.9rem;
