@@ -62,7 +62,6 @@ class Project(models.Model):
     video_url = models.URLField(blank=True)
     date = models.DateField()
     github_link = models.URLField(blank=True)
-    live_link = models.URLField(blank=True)
     publications = models.ManyToManyField(Publication, blank=True, related_name='projects')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

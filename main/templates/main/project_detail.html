@@ -29,13 +29,11 @@
                 <iframe width="560" height="315" src="{{ project.video_url }}" title="Excel Unusual Roller Coaster" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <div class="content-card-text">
+        <h1>Abstract</h1>
                 <p>{{ project.description }}</p>
                 <div class="content-card-links">
                 {% if project.github_link %}
                     <p><a href="{{ project.github_link }}">GitHub Repository</a></p>
-                {% endif %}
-                {% if project.live_link %}
-                    <p><a href="{{ project.live_link }}">Live Project</a></p>
                 {% endif %}
                 </div>
             </div>
