@@ -22,7 +22,12 @@
                         {% endif %}
                         {% if publication.doi %}
                             · <span class="doi">
-                                <a href="https://doi.org/{{ publication.doi }}" target="_blank">DOI: {{ publication.doi }}</a>
+                                <span>DOI: {{ publication.doi }}</span>
+                            </span>
+                        {% endif %}
+                        {% if publication.archivelink %}
+                            · <span class="archivelink">
+                                <a href="{{ publication.archivelink }}" target="_blank">Archive</a>
                             </span>
                         {% endif %}
                     </p>

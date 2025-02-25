@@ -43,6 +43,7 @@ class Publication(models.Model):
     publication_date = models.DateField()
     journal = models.CharField(max_length=200)
     doi = models.CharField(max_length=200, blank=True)
+    archivelink = models.URLField(blank=True)
     abstract = models.TextField()
     link = models.URLField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
