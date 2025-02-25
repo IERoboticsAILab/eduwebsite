@@ -10,7 +10,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
-    align-items: center;
+    align-items: start;
 }
 
 .video-container {
@@ -24,6 +24,7 @@
 }
 
 .video-description h2 {
+    margin-top: 0;
     margin-bottom: 1rem;
     font-size: 1.5rem;
 }
