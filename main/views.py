@@ -1,19 +1,13 @@
-from django.shortcuts import render, get_object_or_404
-from .models import (
-    Project,
-    Publication,
-    IntroText,
-    EducationItem,
-    WorkItem,
-    Talk,
-    ExperienceDescription,
-    OpenPositions,
-)
 from django.core.paginator import Paginator
-from django.db.models import Q
+from django.db.models import Q, DateTimeField
+from django.db.models.functions import ExtractYear
+from django.shortcuts import get_object_or_404, render
+
+from .models import (EducationItem, ExperienceDescription, IntroText,
+                     OpenPositions, Project, Publication, Talk, WorkItem)
 
 
-def about(request):    
+def about(request):
     intro_text = IntroText.objects.first()
     return render(request, "main/about.html", {"intro_text": intro_text})
 
@@ -48,8 +42,20 @@ def project_detail(request, pk):
 
 def publications(request):
     search_query = request.GET.get('search', '')
+    selected_year = request.GET.get('year')
+    
+    # Get all distinct years as integers
+    years = Publication.objects.annotate(
+        year=ExtractYear('publication_date')
+    ).order_by('-year').values_list('year', flat=True).distinct()
+    
     publications_list = Publication.objects.all()
     
+    # Apply year filter
+    if selected_year and selected_year != 'all':
+        publications_list = publications_list.filter(publication_date__year=int(selected_year))
+    
+    # Apply search filter
     if search_query:
         publications_list = publications_list.filter(
             Q(title__icontains=search_query) |
@@ -63,13 +69,16 @@ def publications(request):
     page_number = request.GET.get("page", 1)
     publications = paginator.get_page(page_number)
 
+    context = {
+        "publications": publications,
+        "search_query": search_query,
+        "years": years,
+        "selected_year": selected_year,
+    }
+
     if request.htmx:
-        return render(
-            request,
-            "main/partials/publication-list.html",
-            {"publications": publications, "search_query": search_query}
-        )
-    return render(request, "main/publications.html", {"publications": publications, "search_query": search_query})
+        return render(request, "main/partials/publication-list.html", context)
+    return render(request, "main/publications.html", context)
 
 def experience(request):
     education_items = EducationItem.objects.all()

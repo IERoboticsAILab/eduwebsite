@@ -9,6 +9,19 @@
 {% block title %}Publications{% endblock %}
 
 {% block content %}
+ <div class="year-tabs">
+    <a class="tab {% if not selected_year %}active{% endif %}" 
+       hx-get="{% url 'publications' %}?year=all" 
+       hx-target=".publications-list"
+       hx-push-url="true">All</a>
+    {% for year in years %}
+        <a class="tab {% if selected_year == year|stringformat:"s" %}active{% endif %}" 
+           hx-get="{% url 'publications' %}?year={{ year }}" 
+           hx-target=".publications-list"
+           hx-push-url="true">{{ year }}</a>
+    {% endfor %}
+</div> 
+
 <div class="search-container">
   <input type="search"
          name="search"

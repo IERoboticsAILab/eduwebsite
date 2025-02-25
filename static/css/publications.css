@@ -85,3 +85,29 @@
     max-width: 120px;
   }
 }
+
+.year-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.tab {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background: #f0f0f0;
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.2s ease;
+}
+
+.tab:hover {
+    background: #ddd;
+}
+
+.tab.active {
+    background: #007bff;
+    color: white;
+}

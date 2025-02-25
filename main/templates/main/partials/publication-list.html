@@ -54,16 +54,35 @@
     {% endfor %}
 
   {% if publications.has_next %}
-    <div class="load-more"
-         hx-get="{% url 'publications' %}?page={{ publications.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}"
-         hx-trigger="intersect once"
-         hx-swap="beforeend"
-         hx-target=".publications-list">
-    </div>
+  <div class="load-more"
+             hx-get="{% url 'publications' %}?page={{ publications.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if selected_year %}&year={{ selected_year }}{% endif %}"
+             hx-trigger="intersect once"
+             hx-swap="beforeend"
+             hx-target=".publications-list">
+        </div>
 {% endif %}
     </div>
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Set initial active tab
+    const params = new URLSearchParams(window.location.search);
+    const selectedYear = params.get('year') || 'all';
+    document.querySelectorAll('.year-tabs .tab').forEach(tab => {
+        const tabYear = new URLSearchParams(new URL(tab.href).search).get('year') || 'all';
+        tab.classList.toggle('active', tabYear === selectedYear);
+    });
+
+    // Update active tab on navigation
+    document.body.addEventListener('htmx:afterSwap', function() {
+        const params = new URLSearchParams(window.location.search);
+        const selectedYear = params.get('year') || 'all';
+        document.querySelectorAll('.year-tabs .tab').forEach(tab => {
+            const tabYear = new URLSearchParams(new URL(tab.href).search).get('year') || 'all';
+            tab.classList.toggle('active', tabYear === selectedYear);
+        });
+    });
+});
 function toggleAbstract(id) {
     const abstract = document.querySelector(`[data-abstract-id="${id}"]`);
     const toggle = abstract.nextElementSibling;
