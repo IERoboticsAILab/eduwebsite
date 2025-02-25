@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import (EducationItem, ExperienceDescription, IntroText, Keyword,
                      OpenPositions, Project, ProjectImage, Publication,
-                     SiteSettings, Talk, WorkItem)
+                     SiteSettings, Talk, WorkItem, ResearchLine)
 
 
 @admin.register(Publication)
@@ -43,6 +43,14 @@ class ProjectAdmin(admin.ModelAdmin):
     inlines = [
         ProjectImageInline
     ]
+
+@admin.register(ResearchLine)
+class ResearchLineAdmin(admin.ModelAdmin):
+    list_display = ("title", "order")
+    list_editable = ("order",)
+    filter_horizontal = ("projects", "publications")
+    search_fields = ("title", "description")
+
 
 
 @admin.register(EducationItem)

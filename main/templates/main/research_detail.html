@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/project_detail.css' %}">
+{% endblock %}
+
+{% block title %}{{ research_line.title }}{% endblock %}
+
+{% block content %}
+    {% if research_line.image %}
+        <div class="project-banner">
+            <img src="{{ research_line.image.url }}" alt="{{ research_line.title }}">
+            <div class="banner-overlay">
+                <div class="banner-overlay-text">
+                    <p>{{ research_line.date|date:"m-Y" }}</p>
+                    <h1>{{ research_line.title }}</h1>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <p>{{ research_line.date|date:"m-Y" }}</p>
+        <h1>{{ research_line.title }}</h1>
+    {% endif %}
+
+    <div class="project-content">
+        <div class="content-card">
+            <div class="content-card-video">
+                <iframe width="560" height="315" src="{{ research_line.video_url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="content-card-text">
+        <h1>Abstract</h1>
+                <p>{{ research_line.description }}</p>
+                <div class="content-card-links">
+                {% if research_line.github_link %}
+                    <p><a href="{{ research_line.github_link }}">GitHub Repository</a></p>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% if research_line.publications.exists %}
+            <h3>Related Publications</h3>
+            <div class="publications-list">
+                {% for publication in research_line.publications.all %}
+                    <div class="publication-card">
+                        {% if publication.image %}
+                            <img src="{{ publication.image.url }}" alt="{{ publication.title }}" class="publication-image">
+                        {% endif %}
+                        <div class="publication-content">
+                            <div class="publication-date">{{ publication.publication_date|date:"m-Y" }}</div>
+                            <h4 class="publication-title">
+                                {% if publication.link %}
+                                    <a href="{{ publication.link }}">{{ publication.title }}</a>
+                                {% elif publication.doi %}
+                                    <a href="https://doi.org/{{ publication.doi }}">{{ publication.title }}</a>
+                                {% else %}
+                                    {{ publication.title }}
+                                {% endif %}
+                            </h4>
+                            <p class="publication-authors">{{ publication.authors }}</p>
+                            <p class="publication-journal">{{ publication.journal }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% if research_line.projects.exists %}
+            <h3>Related Publications</h3>
+            <div class="publications-list">
+                {% for project in research_line.projects.all %}
+                    <div class="publication-card">
+                        {% if project.image %}
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="publication-image">
+                        {% endif %}
+                        <div class="publication-content">
+                            <div class="publication-date">{{ project.date|date:"m-Y" }}</div>
+                            <h4 class="publication-title">
+                                <a {{project.title }}</a>
+                                    {{project.title }}
+                            </h4>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}

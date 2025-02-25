@@ -1,14 +1,16 @@
+{% load custom_filters %}
+
 <div class="projects-grid">
   {% for project in projects %}
       <div class="project-card">
           <div class="project-card-header">
               {% if project.image %}
-                  <a href="{% url 'project_detail' project.pk %}">
+                  <a href="{% if project|isinstanceof:'ResearchLine' %}{% url 'research_detail' project.pk %}{% else %}{% url 'project_detail' project.pk %}{% endif %}">
                       <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image" style="width: 300px; height: auto;">
                   </a>
               {% endif %}
               <h3>
-                  <a href="{% url 'project_detail' project.pk %}">{{ project.title }}</a>
+                  <a href="{% if project|isinstanceof:'ResearchLine' %}{% url 'research_detail' project.pk %}{% else %}{% url 'project_detail' project.pk %}{% endif %}">{{ project.title }}</a>
               </h3>
           </div>
           <div class="project-card-body">

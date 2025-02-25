@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 
 class IntroText(models.Model):
     text = models.TextField()
@@ -138,6 +139,33 @@ class Talk(models.Model):
 
     def __str__(self):
         return self.title
+
+class ResearchLine(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    image = models.ImageField(upload_to='research_lines/', blank=True)
+    video_url = models.URLField(blank=True)
+    date = models.DateField(blank=True, null=True)
+    projects = models.ManyToManyField('Project', blank=True, related_name='research_lines')
+    publications = models.ManyToManyField('Publication', blank=True, related_name='research_lines')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return self.title
+
+    def all_publications(self):
+        """
+        Get all publications including those from related projects
+        """
+        return Publication.objects.filter(
+            Q(research_lines=self) |  # Direct publications
+            Q(projects__research_lines=self)  # Publications from related projects
+        ).distinct()
 
 class OpenPositions(models.Model):
     title = models.CharField(max_length=200)

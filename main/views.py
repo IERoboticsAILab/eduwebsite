@@ -2,9 +2,10 @@ from django.core.paginator import Paginator
 from django.db.models import Q, DateTimeField
 from django.db.models.functions import ExtractYear
 from django.shortcuts import get_object_or_404, render
+from itertools import chain
 
 from .models import (EducationItem, ExperienceDescription, IntroText,
-                     OpenPositions, Project, Publication, Talk, WorkItem)
+                     OpenPositions, Project, Publication, Talk, WorkItem, ResearchLine)
 
 
 def about(request):
@@ -23,7 +24,9 @@ def contact(request):
 
 
 def projects(request):
-    projects_list = Project.objects.all()
+    research_lines = ResearchLine.objects.all()
+    projects = Project.objects.all()
+    projects_list = list(chain(research_lines, projects))
     page_number = request.GET.get("page", 1)
     paginator = Paginator(projects_list, 6)
     projects = paginator.get_page(page_number)
@@ -39,6 +42,9 @@ def project_detail(request, pk):
     project = get_object_or_404(Project, pk=pk)
     return render(request, "main/project_detail.html", {"project": project})
 
+def research_detail(request, pk):
+    research_line = get_object_or_404(ResearchLine, pk=pk)
+    return render(request, "main/research_detail.html", {"research_line": research_line})
 
 def publications(request):
     search_query = request.GET.get('search', '')
