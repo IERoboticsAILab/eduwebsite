@@ -53,15 +53,15 @@
         <p class="no-publications">No publications available yet.</p>
     {% endfor %}
 
-    {% if publications.has_next %}
-        <div class="load-more"
-             hx-get="{% url 'publications' %}?page={{ publications.next_page_number }}"
-             hx-trigger="intersect once"
-             hx-swap="beforeend"
-             hx-target=".publications-list">
-        </div>
-    {% endif %}
-</div>
+  {% if publications.has_next %}
+    <div class="load-more"
+         hx-get="{% url 'publications' %}?page={{ publications.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}"
+         hx-trigger="intersect once"
+         hx-swap="beforeend"
+         hx-target=".publications-list">
+    </div>
+{% endif %}
+    </div>
 
 <script>
 function toggleAbstract(id) {

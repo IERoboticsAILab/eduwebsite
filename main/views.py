@@ -10,6 +10,7 @@ from .models import (
     OpenPositions,
 )
 from django.core.paginator import Paginator
+from django.db.models import Q
 
 
 def about(request):    
@@ -46,19 +47,29 @@ def project_detail(request, pk):
 
 
 def publications(request):
+    search_query = request.GET.get('search', '')
     publications_list = Publication.objects.all()
-    page_number = request.GET.get("page", 1)
+    
+    if search_query:
+        publications_list = publications_list.filter(
+            Q(title__icontains=search_query) |
+            Q(authors__icontains=search_query) |
+            Q(journal__icontains=search_query) |
+            Q(abstract__icontains=search_query) |
+            Q(keywords__name__icontains=search_query)
+        ).distinct()
+
     paginator = Paginator(publications_list, 6)
+    page_number = request.GET.get("page", 1)
     publications = paginator.get_page(page_number)
 
     if request.htmx:
         return render(
             request,
             "main/partials/publication-list.html",
-            {"publications": publications},
+            {"publications": publications, "search_query": search_query}
         )
-    return render(request, "main/publications.html", {"publications": publications})
-
+    return render(request, "main/publications.html", {"publications": publications, "search_query": search_query})
 
 def experience(request):
     education_items = EducationItem.objects.all()
