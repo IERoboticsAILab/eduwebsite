@@ -64,25 +64,6 @@
     </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Set initial active tab
-    const params = new URLSearchParams(window.location.search);
-    const selectedYear = params.get('year') || 'all';
-    document.querySelectorAll('.year-tabs .tab').forEach(tab => {
-        const tabYear = new URLSearchParams(new URL(tab.href).search).get('year') || 'all';
-        tab.classList.toggle('active', tabYear === selectedYear);
-    });
-
-    // Update active tab on navigation
-    document.body.addEventListener('htmx:afterSwap', function() {
-        const params = new URLSearchParams(window.location.search);
-        const selectedYear = params.get('year') || 'all';
-        document.querySelectorAll('.year-tabs .tab').forEach(tab => {
-            const tabYear = new URLSearchParams(new URL(tab.href).search).get('year') || 'all';
-            tab.classList.toggle('active', tabYear === selectedYear);
-        });
-    });
-});
 function toggleAbstract(id) {
     const abstract = document.querySelector(`[data-abstract-id="${id}"]`);
     const toggle = abstract.nextElementSibling;

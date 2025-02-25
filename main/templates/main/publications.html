@@ -36,8 +36,39 @@
 <div class="publications-grid"
   hx-get="{% url 'publications' %}"
   hx-trigger="intersect once"
-  hx-swap="outerHTML"
+  hx-swap="innerHTML"
   hx-target="this">
 {% include 'main/partials/publication-list.html' %}
 </div>
+
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+    activateCurrentTab();
+});
+
+// Run `activateCurrentTab` after HTMX updates the page
+document.body.addEventListener('htmx:afterSwap', function() {
+    activateCurrentTab();
+});
+
+function activateCurrentTab() {
+    const params = new URLSearchParams(window.location.search);
+    const selectedYear = params.get('year') || 'all';
+
+    document.querySelectorAll('.year-tabs .tab').forEach(tab => {
+        // Get the year parameter from the tab's hx-get attribute instead of its href
+        const tabYear = new URLSearchParams(tab.getAttribute('hx-get').split('?')[1] || '').get('year') || 'all';
+
+        // Ensure only one tab gets the active class
+        if (tabYear === selectedYear) {
+            tab.classList.add('active');
+        } else {
+            tab.classList.remove('active');
+        }
+    });
+}
+</script>
+
 {% endblock %}
+
+
