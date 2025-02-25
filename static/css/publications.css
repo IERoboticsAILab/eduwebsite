@@ -41,6 +41,7 @@
   height: auto;
   border-radius: 4px;
   margin-left: 2rem;
+  float: right;
 }
 
 .publication-keywords {
@@ -91,12 +92,12 @@
     gap: 1rem;
     margin-bottom: 2rem;
     flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .tab {
     padding: 0.5rem 1rem;
-    border-radius: 4px;
-    background: #f0f0f0;
     cursor: pointer;
     text-decoration: none;
     color: #333;
@@ -108,7 +109,54 @@
 }
 
 .tab.active {
-    background: #007bff;
-    color: white;
+    border-bottom: 2px solid #000000;
 }
 
+.search-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.search-container input[type="search"] {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    border: 2px solid #eef2f7;
+    background-color: #f8fafc;
+    transition: all 0.3s ease;
+    color: #1a202c;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    border-radius: 4px;
+}
+
+.search-container input[type="search"]::placeholder {
+    color: #a0aec0;
+}
+
+.search-container input[type="search"]:focus {
+    outline: none;
+    border-color: #000000;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.search-container input[type="search"]:hover {
+    background-color: #ffffff;
+    border-color: #000000;
+}
+
+/* Remove the default search input clear button in webkit browsers */
+.search-container input[type="search"]::-webkit-search-decoration,
+.search-container input[type="search"]::-webkit-search-cancel-button,
+.search-container input[type="search"]::-webkit-search-results-button,
+.search-container input[type="search"]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+}
+
+.searchparams {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
