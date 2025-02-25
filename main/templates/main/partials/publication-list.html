@@ -43,6 +43,11 @@
                     <div class="publication-abstract" data-abstract-id="{{ forloop.counter }}">
                         <p>{{ publication.abstract }}</p>
                     </div>
+                    
+                    <div class="elipsis">
+                    <p>...</p>
+                    </div>
+
                     <div class="abstract-toggle" onclick="toggleAbstract({{ forloop.counter }})">
                         Show more
                     </div>
@@ -71,13 +76,16 @@
 <script>
 function toggleAbstract(id) {
     const abstract = document.querySelector(`[data-abstract-id="${id}"]`);
-    const toggle = abstract.nextElementSibling;
+    const elipsis = abstract.nextElementSibling;
+    const toggle = abstract.nextElementSibling.nextElementSibling;
 
     if (abstract.classList.contains('expanded')) {
         abstract.classList.remove('expanded');
+        elipsis.textContent = '...';
         toggle.textContent = 'Show more';
     } else {
         abstract.classList.add('expanded');
+        elipsis.textContent = '';
         toggle.textContent = 'Show less';
     }
 }
