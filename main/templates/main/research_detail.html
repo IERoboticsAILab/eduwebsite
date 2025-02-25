@@ -65,6 +65,7 @@
                 {% endfor %}
             </div>
         {% endif %}
+
     {% if research_line.projects.exists %}
             <h3>Related Publications</h3>
             <div class="publications-list">
@@ -76,8 +77,9 @@
                         <div class="publication-content">
                             <div class="publication-date">{{ project.date|date:"m-Y" }}</div>
                             <h4 class="publication-title">
-                                <a {{project.title }}</a>
+                                <a href={% url 'project_detail' project.pk %}>
                                     {{project.title }}
+                                </a>
                             </h4>
                         </div>
                     </div>
