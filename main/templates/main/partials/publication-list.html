@@ -40,7 +40,7 @@
                         </div>
                     {% endif %}
 
-                    <div class="publication-abstract" data-abstract-id="{{ forloop.counter }}">
+                    <div class="publication-abstract" data-abstract-id="pub-{{ publication.id }}">
                         <p>{{ publication.abstract }}</p>
                     </div>
                     
@@ -48,7 +48,7 @@
                     <p>...</p>
                     </div>
 
-                    <div class="abstract-toggle" onclick="toggleAbstract({{ forloop.counter }})">
+                    <div class="abstract-toggle" onclick="toggleAbstract('pub-{{ publication.id }}')">
                         Show more
                     </div>
                 </div>
@@ -76,6 +76,8 @@
 <script>
 function toggleAbstract(id) {
     const abstract = document.querySelector(`[data-abstract-id="${id}"]`);
+    if (!abstract) return;
+    
     const elipsis = abstract.nextElementSibling;
     const toggle = abstract.nextElementSibling.nextElementSibling;
 
