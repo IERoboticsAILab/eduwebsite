@@ -19,6 +19,10 @@
                     {% if talk.location %}
             <p class="talk-location">{{ talk.location }}</p>
                     {% endif %}
+                    {% if talk.language %}
+            <p class="talk-location">{{ talk.language }}</p>
+                    {% endif %}
+ 
                     {% if talk.date %}
                         <p class="talk-date">{{ talk.date|date:"F j, Y" }}</p>
                     {% endif %}
