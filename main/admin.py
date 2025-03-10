@@ -67,8 +67,7 @@ class WorkItemAdmin(admin.ModelAdmin):
 
 @admin.register(Talk)
 class TalkAdmin(admin.ModelAdmin):
-    list_display = ("title", "order")
-    list_editable = ("order",)
+    list_display = ("title", "date")
 
 
 @admin.register(SiteSettings)

@@ -132,10 +132,9 @@ class Talk(models.Model):
     description = models.TextField()
     video_url = models.URLField(help_text="Enter the YouTube embed URL (e.g., https://www.youtube.com/embed/VIDEO_ID)")
     date = models.DateField(blank=True, null=True)
-    order = models.IntegerField(default=0, help_text="Order in which the talk should appear")
 
     class Meta:
-        ordering = ['order']
+        ordering = ['-date']
 
     def __str__(self):
         return self.title
