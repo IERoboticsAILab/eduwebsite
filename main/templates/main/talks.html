@@ -16,12 +16,11 @@
                 </div>
                 <div class="video-description">
                     <h2>{{ talk.title }}</h2>
-                    {% if talk.location %}
-            <p class="talk-location">{{ talk.location }}</p>
-                    {% endif %}
-                    {% if talk.language %}
-            <p class="talk-location">{{ talk.language }}</p>
-                    {% endif %}
+                    <p class="talk-meta">
+                        {% if talk.location %}{{ talk.location }}{% endif %}
+                        {% if talk.location and talk.language %} • {% endif %}
+                        {% if talk.language %}{{ talk.language }}{% endif %}
+                    </p>
  
                     {% if talk.date %}
                         <p class="talk-date">{{ talk.date|date:"F j, Y" }}</p>
