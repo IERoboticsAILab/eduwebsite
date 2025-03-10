@@ -16,6 +16,9 @@
                 </div>
                 <div class="video-description">
                     <h2>{{ talk.title }}</h2>
+                    {% if talk.location %}
+            <p class="talk-location">{{ talk.location }}</p>
+                    {% endif %}
                     {% if talk.date %}
                         <p class="talk-date">{{ talk.date|date:"F j, Y" }}</p>
                     {% endif %}

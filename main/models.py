@@ -132,6 +132,7 @@ class Talk(models.Model):
     description = models.TextField()
     video_url = models.URLField(help_text="Enter the YouTube embed URL (e.g., https://www.youtube.com/embed/VIDEO_ID)")
     date = models.DateField(blank=True, null=True)
+    location = models.CharField(max_length=200, blank=True)
 
     class Meta:
         ordering = ['-date']
