@@ -19,6 +19,12 @@ main {
   object-fit: cover;
 }
 
+
+.abstract-header {
+  margin-top: 0;
+  font-size: 1.6rem;
+} 
+
 .banner-overlay {
   position: absolute;
   bottom: 0;
