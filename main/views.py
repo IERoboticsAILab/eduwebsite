@@ -3,7 +3,7 @@ from django.db.models import Q, DateTimeField
 from django.db.models.functions import ExtractYear
 from django.shortcuts import get_object_or_404, render
 from itertools import chain
-
+from datetime import datetime
 from .models import (EducationItem, ExperienceDescription, IntroText,
                      OpenPositions, Project, Publication, Talk, WorkItem, ResearchLine)
 
@@ -27,7 +27,7 @@ def projects(request):
     research_lines = ResearchLine.objects.all()
     projects = Project.objects.all()
     projects_list = list(chain(research_lines, projects))
-    
+    projects_list.sort(key=lambda x: x.date if x.date is not None else datetime.min.date(), reverse=True)
     if request.htmx:
         return render(
             request, "main/partials/project-list.html", {"projects": projects_list}
