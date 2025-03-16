@@ -1,7 +1,14 @@
 .projects-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 10px;
+  justify-content: center;
+}
+
+.projects-grid-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .project-card {
@@ -14,7 +21,7 @@
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.2s, box-shadow 0.2s;
-  width: 300px;
+  width: 280px;
 }
 
 .project-card:hover {

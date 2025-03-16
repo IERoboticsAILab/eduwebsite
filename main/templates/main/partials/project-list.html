@@ -6,7 +6,7 @@
           <div class="project-card-header">
               {% if project.image %}
                   <a href="{% if project|isinstanceof:'ResearchLine' %}{% url 'research_detail' project.pk %}{% else %}{% url 'project_detail' project.pk %}{% endif %}">
-                      <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image" style="width: 300px; height: auto;">
+                      <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image" style="width: 280px; height: auto;">
                   </a>
               {% endif %}
               <h3>
