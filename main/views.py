@@ -27,15 +27,12 @@ def projects(request):
     research_lines = ResearchLine.objects.all()
     projects = Project.objects.all()
     projects_list = list(chain(research_lines, projects))
-    page_number = request.GET.get("page", 1)
-    paginator = Paginator(projects_list, 6)
-    projects = paginator.get_page(page_number)
-
+    
     if request.htmx:
         return render(
-            request, "main/partials/project-list.html", {"projects": projects}
+            request, "main/partials/project-list.html", {"projects": projects_list}
         )
-    return render(request, "main/projects.html", {"projects": projects})
+    return render(request, "main/projects.html", {"projects": projects_list})
 
 
 def project_detail(request, pk):
