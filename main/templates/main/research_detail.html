@@ -40,33 +40,6 @@
             </div>
         </div>
 
-        {% if research_line.publications.exists %}
-            <h3>Related Publications</h3>
-            <div class="publications-list">
-                {% for publication in research_line.publications.all %}
-                    <div class="publication-card">
-                        {% if publication.image %}
-                            <img src="{{ publication.image.url }}" alt="{{ publication.title }}" class="publication-image">
-                        {% endif %}
-                        <div class="publication-content">
-                            <div class="publication-date">{{ publication.publication_date|date:"m-Y" }}</div>
-                            <h4 class="publication-title">
-                                {% if publication.link %}
-                                    <a href="{{ publication.link }}">{{ publication.title }}</a>
-                                {% elif publication.doi %}
-                                    <a href="https://doi.org/{{ publication.doi }}">{{ publication.title }}</a>
-                                {% else %}
-                                    {{ publication.title }}
-                                {% endif %}
-                            </h4>
-                            <p class="publication-authors">{{ publication.authors }}</p>
-                            <p class="publication-journal">{{ publication.journal }}</p>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-
     {% if research_line.projects.exists %}
             <h3>Related Projects</h3>
             <div class="projects-grid">
@@ -101,4 +74,32 @@
             </div>
         {% endif %}
     </div>
+
+        {% if research_line.publications.exists %}
+            <h3>Related Publications</h3>
+            <div class="publications-list">
+                {% for publication in research_line.publications.all %}
+                    <div class="publication-card">
+                        {% if publication.image %}
+                            <img src="{{ publication.image.url }}" alt="{{ publication.title }}" class="publication-image">
+                        {% endif %}
+                        <div class="publication-content">
+                            <div class="publication-date">{{ publication.publication_date|date:"m-Y" }}</div>
+                            <h4 class="publication-title">
+                                {% if publication.link %}
+                                    <a href="{{ publication.link }}">{{ publication.title }}</a>
+                                {% elif publication.doi %}
+                                    <a href="https://doi.org/{{ publication.doi }}">{{ publication.title }}</a>
+                                {% else %}
+                                    {{ publication.title }}
+                                {% endif %}
+                            </h4>
+                            <p class="publication-authors">{{ publication.authors }}</p>
+                            <p class="publication-journal">{{ publication.journal }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
 {% endblock %}
