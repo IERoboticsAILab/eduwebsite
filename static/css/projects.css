@@ -104,3 +104,30 @@
   color: white;
   text-decoration: none;
 }
+
+.research-line-card {
+  background-color: #222;
+  color: white;
+}
+
+.research-line-card a {
+  color: #fff;
+}
+
+.research-line-card h3 a {
+  color: #fff;
+}
+
+.research-line-card a:hover {
+  color: #ccc;
+}
+
+.research-line-card p {
+  color: #fff;
+}
+
+.research-line-card .project-card-footer {
+  background-color: #111;
+  border-top: 1px solid #333;
+}
+

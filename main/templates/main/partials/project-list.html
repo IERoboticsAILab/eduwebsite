@@ -2,7 +2,7 @@
 
 <div class="projects-grid">
   {% for project in projects %}
-      <div class="project-card">
+      <div class="project-card {% if project|isinstanceof:'ResearchLine' %}research-line-card{% endif %}">
           <div class="project-card-header">
               {% if project.image %}
                   <a href="{% if project|isinstanceof:'ResearchLine' %}{% url 'research_detail' project.slug %}{% else %}{% url 'project_detail' project.slug %}{% endif %}">
