@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import (EducationItem, ExperienceDescription, IntroText, Keyword,
                      OpenPositions, Project, ProjectImage, Publication,
-                     SiteSettings, Talk, WorkItem, ResearchLine)
+                     SiteSettings, Talk, WorkItem, ResearchLine, Course)
 
 
 @admin.register(Publication)
@@ -12,6 +12,14 @@ class PublicationAdmin(admin.ModelAdmin):
     filter_horizontal = ("keywords",)
     list_filter = ("publication_date", "journal", "keywords")
     date_hierarchy = "publication_date"
+
+
+@admin.register(Course)
+class CourseAdmin(admin.ModelAdmin):
+    list_display = ("title", "start_date", "end_date")
+    search_fields = ("title", "description")
+    list_filter = ("start_date", "end_date")
+    date_hierarchy = "start_date"
 
 
 @admin.register(OpenPositions)

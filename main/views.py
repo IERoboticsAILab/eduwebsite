@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, render
 from itertools import chain
 from datetime import datetime
 from .models import (EducationItem, ExperienceDescription, IntroText,
-                     OpenPositions, Project, Publication, Talk, WorkItem, ResearchLine)
+                     OpenPositions, Project, Publication, Talk, WorkItem, ResearchLine, Course)
 
 
 def about(request):
@@ -82,6 +82,44 @@ def publications(request):
     if request.htmx:
         return render(request, "main/partials/publication-list.html", context)
     return render(request, "main/publications.html", context)
+
+
+def courses(request):
+    search_query = request.GET.get('search', '')
+    selected_year = request.GET.get('year')
+    
+    # Get all distinct years as integers
+    years = Course.objects.annotate(
+        year=ExtractYear('start_date')
+    ).order_by('-year').values_list('year', flat=True).distinct()
+    
+    courses_list = Course.objects.all()
+    
+    # Apply year filter
+    if selected_year and selected_year != 'all':
+        courses_list = courses_list.filter(start_date__year=int(selected_year))
+    
+    # Apply search filter
+    if search_query:
+        courses_list = courses_list.filter(
+            Q(title__icontains=search_query) |
+            Q(description__icontains=search_query)
+        ).distinct()
+
+    paginator = Paginator(courses_list, 6)
+    page_number = request.GET.get("page", 1)
+    courses = paginator.get_page(page_number)
+
+    context = {
+        "courses": courses,
+        "search_query": search_query,
+        "years": years,
+        "selected_year": selected_year,
+    }
+
+    if request.htmx:
+        return render(request, "main/partials/course-list.html", context)
+    return render(request, "main/courses.html", context)
 
 def experience(request):
     education_items = EducationItem.objects.all()

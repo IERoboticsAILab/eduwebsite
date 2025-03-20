@@ -30,6 +30,7 @@ urlpatterns = [
     path("projects/<slug:slug>/", views.project_detail, name="project_detail"),
     path("research-lines/<slug:slug>/", views.research_detail, name="research_detail"),
     path("publications/", views.publications, name="publications"),
+    path("courses/", views.courses, name="courses"),
     path("talks/", views.talks, name="talks"),
     path("contact/", views.contact, name="contact"),
 ]

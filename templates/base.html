@@ -43,6 +43,7 @@
     <nav class="main-nav">
         <a href="{% url 'about' %}" {% if request.path == '/' %}class="active"{% endif %}>ABOUT</a>
         <a href="{% url 'experience' %}" {% if request.path == '/experience/' %}class="active"{% endif %}>EXPERIENCE</a>
+        <a href="{% url 'courses' %}" {% if request.path == '/courses/' %}class="active"{% endif %}>TEACHING</a>
         <a href="{% url 'projects' %}" {% if request.path == '/projects/' %}class="active"{% endif %}>PROJECTS</a>
         <a href="{% url 'talks' %}" {% if request.path == '/talks/' %}class="active"{% endif %}>TALKS</a>
         <a href="{% url 'publications' %}" {% if request.path == '/publications/' %}class="active"{% endif %}>PUBLICATIONS</a>

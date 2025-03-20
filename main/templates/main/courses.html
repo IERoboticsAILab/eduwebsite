@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/publications.css' %}">
+{% endblock %}
+
+{% block title %}Courses{% endblock %}
+
+{% block content %}
+<div class="searchparams">
+<div class="search-container">
+  <input type="search"
+         name="search"
+         placeholder="Search courses..."
+         hx-get="{% url 'courses' %}"
+         hx-trigger="input changed delay:500ms"
+         hx-target=".courses-list"
+         hx-params="*"
+         value="{{ request.GET.search }}">
+</div>
+
+
+</div>
+
+<div class="courses-grid"
+  hx-get="{% url 'courses' %}"
+  hx-trigger="intersect once"
+  hx-swap="innerHTML"
+  hx-target="this">
+{% include 'main/partials/course-list.html' %}
+</div>
+
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+    activateCurrentTab();
+});
+
+// Run `activateCurrentTab` after HTMX updates the page
+document.body.addEventListener('htmx:afterSwap', function() {
+    activateCurrentTab();
+});
+
+function activateCurrentTab() {
+    const params = new URLSearchParams(window.location.search);
+    const selectedYear = params.get('year') || 'all';
+
+    document.querySelectorAll('.year-tabs .tab').forEach(tab => {
+        // Get the year parameter from the tab's hx-get attribute instead of its href
+        const tabYear = new URLSearchParams(tab.getAttribute('hx-get').split('?')[1] || '').get('year') || 'all';
+
+        // Ensure only one tab gets the active class
+        if (tabYear === selectedYear) {
+            tab.classList.add('active');
+        } else {
+            tab.classList.remove('active');
+        }
+    });
+}
+</script>
+
+{% endblock %}
+
+

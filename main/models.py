@@ -58,6 +58,21 @@ class Publication(models.Model):
     def __str__(self):
         return self.title
 
+
+class Course(models.Model):
+    title = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='courses/', blank=True)
+    description = models.TextField()
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+    class Meta:
+        ordering = ['-start_date']
+
+    def __str__(self):
+        return self.title
+
+
 class Project(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True, blank=True, default='')

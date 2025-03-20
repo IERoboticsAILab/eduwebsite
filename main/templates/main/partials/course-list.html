@@ -1,0 +1,79 @@
+<div class="courses-list">
+    {% for course in courses %}
+        <div class="course-item">
+            <div class="course-grid">
+
+
+                {% if course.image %}
+                    <div class="course-image">
+                        <img src="{{ course.image.url }}" alt="{{ course.title }}" />
+                    </div>
+                {% endif %}
+                <div class="course-content">
+                    <h3 class="course-title">
+                        {% if course.link %}
+                            <a href="{{ course.link }}" target="_blank">{{ course.title }}</a>
+                        {% else %}
+                            {{ course.title }}
+                        {% endif %}
+                    </h3>
+
+
+                    <p class="course-meta">
+                        <span class="course-date">{{ course.start_date|date:"Y" }}</span>
+                        {% if course.end_date %}
+                            · <span class="course-date">{{ course.end_date|date:"Y" }}</span>
+                        {% endif %}
+                    </p>
+                </div>
+                    </p>
+                    
+
+                    <div class="course-abstract" data-abstract-id="course-{{ course.id }}">
+                        <p>{{ course.description }}</p>
+                    </div>
+                    
+                    <div class="elipsis">
+                    <p>...</p>
+                    </div>
+
+                    <div class="abstract-toggle" onclick="toggleAbstract('course-{{ course.id }}')">
+                        Show more
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    {% empty %}
+        <p class="no-courses">No courses available yet.</p>
+    {% endfor %}
+
+  {% if courses.has_next %}
+  <div class="load-more"
+             hx-get="{% url 'courses' %}?page={{ courses.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if selected_year %}&year={{ selected_year }}{% endif %}"
+             hx-trigger="intersect once"
+             hx-swap="beforeend"
+             hx-target=".courses-list">
+        </div>
+{% endif %}
+    </div>
+
+<script>
+function toggleAbstract(id) {
+    const abstract = document.querySelector(`[data-abstract-id="${id}"]`);
+    if (!abstract) return;
+    
+    const elipsis = abstract.nextElementSibling;
+    const toggle = abstract.nextElementSibling.nextElementSibling;
+
+    if (abstract.classList.contains('expanded')) {
+        abstract.classList.remove('expanded');
+        elipsis.textContent = '...';
+        toggle.textContent = 'Show more';
+    } else {
+        abstract.classList.add('expanded');
+        elipsis.textContent = '';
+        toggle.textContent = 'Show less';
+    }
+}
+</script>
