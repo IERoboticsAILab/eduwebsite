@@ -24,10 +24,25 @@ def contact(request):
 
 
 def projects(request):
+    # Get research lines and sort by date
     research_lines = ResearchLine.objects.all()
+    sorted_research_lines = sorted(
+        research_lines, 
+        key=lambda x: x.date if x.date is not None else datetime.min.date(), 
+        reverse=True
+    )
+    
+    # Get projects and sort by date
     projects = Project.objects.all()
-    projects_list = list(chain(research_lines, projects))
-    projects_list.sort(key=lambda x: x.date if x.date is not None else datetime.min.date(), reverse=True)
+    sorted_projects = sorted(
+        projects, 
+        key=lambda x: x.date if x.date is not None else datetime.min.date(), 
+        reverse=True
+    )
+    
+    # Combine the two sorted lists (research lines first, then projects)
+    projects_list = sorted_research_lines + sorted_projects
+    
     if request.htmx:
         return render(
             request, "main/partials/project-list.html", {"projects": projects_list}
