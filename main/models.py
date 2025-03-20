@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Q
+from django.utils.text import slugify
 
 class IntroText(models.Model):
     text = models.TextField()
@@ -59,6 +60,7 @@ class Publication(models.Model):
 
 class Project(models.Model):
     title = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, unique=True, blank=True, default='')
     description = models.TextField()
     image = models.ImageField(upload_to='projects/', blank=True)
     video_url = models.URLField(blank=True)
@@ -73,6 +75,11 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
 class ProjectImage(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='gallery_images')
@@ -143,6 +150,7 @@ class Talk(models.Model):
 
 class ResearchLine(models.Model):
     title = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, unique=True, blank=True, default='')
     description = models.TextField()
     image = models.ImageField(upload_to='research_lines/', blank=True)
     video_url = models.URLField(blank=True)
@@ -158,6 +166,11 @@ class ResearchLine(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     def all_publications(self):
         """

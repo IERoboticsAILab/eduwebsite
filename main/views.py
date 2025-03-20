@@ -35,12 +35,12 @@ def projects(request):
     return render(request, "main/projects.html", {"projects": projects_list})
 
 
-def project_detail(request, pk):
-    project = get_object_or_404(Project, pk=pk)
+def project_detail(request, slug):
+    project = get_object_or_404(Project, slug=slug)
     return render(request, "main/project_detail.html", {"project": project})
 
-def research_detail(request, pk):
-    research_line = get_object_or_404(ResearchLine, pk=pk)
+def research_detail(request, slug):
+    research_line = get_object_or_404(ResearchLine, slug=slug)
     return render(request, "main/research_detail.html", {"research_line": research_line})
 
 def publications(request):
