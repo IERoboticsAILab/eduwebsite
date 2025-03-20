@@ -30,8 +30,9 @@
   }
   
   .course-grid {
+    margin-top: 1rem;
     display: grid;
-    grid-template-columns: 4fr minmax(120px, 1fr);
+    grid-template-columns: minmax(120px, 1fr) 4fr;
     align-items: start;
     gap: 2rem;
   }
@@ -40,8 +41,7 @@
     max-width: 150px;
     height: auto;
     border-radius: 4px;
-    margin-left: 2rem;
-    float: right;
+    margin-right: 2rem;
   }
   
   .course-keywords {
@@ -84,6 +84,7 @@
   
     .course-image img {
       max-width: 120px;
+      margin-bottom: 1rem;
     }
   }
   

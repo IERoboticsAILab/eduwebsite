@@ -2,8 +2,6 @@
     {% for course in courses %}
         <div class="course-item">
             <div class="course-grid">
-
-
                 {% if course.image %}
                     <div class="course-image">
                         <img src="{{ course.image.url }}" alt="{{ course.title }}" />
@@ -18,30 +16,25 @@
                         {% endif %}
                     </h3>
 
-
                     <p class="course-meta">
                         <span class="course-date">{{ course.start_date|date:"Y" }}</span>
                         {% if course.end_date %}
                             · <span class="course-date">{{ course.end_date|date:"Y" }}</span>
                         {% endif %}
                     </p>
-                </div>
-                    </p>
-                    
 
                     <div class="course-abstract" data-abstract-id="course-{{ course.id }}">
                         <p>{{ course.description }}</p>
                     </div>
                     
                     <div class="elipsis">
-                    <p>...</p>
+                        <p>...</p>
                     </div>
 
                     <div class="abstract-toggle" onclick="toggleAbstract('course-{{ course.id }}')">
                         Show more
                     </div>
                 </div>
-                
             </div>
         </div>
     {% empty %}
