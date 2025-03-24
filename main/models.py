@@ -63,11 +63,13 @@ class Course(models.Model):
     title = models.CharField(max_length=200)
     image = models.ImageField(upload_to='courses/', blank=True)
     description = models.TextField()
-    start_date = models.DateField()
-    end_date = models.DateField()
-
+    start_year = models.IntegerField()
+    end_year = models.IntegerField()
+    period = models.CharField(max_length=200)
+    program = models.CharField(max_length=200)
+    keywords = models.ManyToManyField(Keyword, blank=True, related_name='courses')
     class Meta:
-        ordering = ['-start_date']
+        ordering = ['-start_year']
 
     def __str__(self):
         return self.title

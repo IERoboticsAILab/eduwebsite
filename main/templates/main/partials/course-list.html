@@ -17,12 +17,25 @@
                     </h3>
 
                     <p class="course-meta">
-                        <span class="course-date">{{ course.start_date|date:"Y" }}</span>
-                        {% if course.end_date %}
-                            · <span class="course-date">{{ course.end_date|date:"Y" }}</span>
+                        <span class="course-date">{{ course.start_year }}</span>
+                        {% if course.end_year %}
+                            · <span class="course-date">{{ course.end_year }}</span>
+                            {% if course.period %}
+                                · <span class="course-period">{{ course.period }}</span>
+                            {% endif %}
+                            {% if course.program %}
+                                · <span class="course-program">{{ course.program }}</span>
+                            {% endif %}
                         {% endif %}
                     </p>
 
+                    {% if course.keywords %}
+                        <div class="course-keywords">
+                            {% for keyword in course.keywords.all %}
+                                <span>{{ keyword.name }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                     <div class="course-abstract" data-abstract-id="course-{{ course.id }}">
                         <p>{{ course.description }}</p>
                     </div>

@@ -16,10 +16,10 @@ class PublicationAdmin(admin.ModelAdmin):
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ("title", "start_date", "end_date")
+    list_display = ("title", "start_year", "end_year")
     search_fields = ("title", "description")
-    list_filter = ("start_date", "end_date")
-    date_hierarchy = "start_date"
+    filter_horizontal = ("keywords",)
+    list_filter = ("start_year", "end_year")
 
 
 @admin.register(OpenPositions)

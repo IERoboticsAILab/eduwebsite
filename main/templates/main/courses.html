@@ -9,20 +9,6 @@
 {% block title %}Courses{% endblock %}
 
 {% block content %}
-<div class="searchparams">
-<div class="search-container">
-  <input type="search"
-         name="search"
-         placeholder="Search courses..."
-         hx-get="{% url 'courses' %}"
-         hx-trigger="input changed delay:500ms"
-         hx-target=".courses-list"
-         hx-params="*"
-         value="{{ request.GET.search }}">
-</div>
-
-
-</div>
 
 <div class="courses-grid"
   hx-get="{% url 'courses' %}"
