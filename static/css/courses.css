@@ -37,9 +37,17 @@
     gap: 2rem;
   }
   
-  .course-image img {
+  .course-image {
+    width: 100%;
     max-width: 300px;
     height: auto;
+    overflow: hidden;
+  }
+  
+  .course-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     border-radius: 4px;
     margin-right: 2rem;
   }
@@ -82,9 +90,13 @@
       gap: 1rem;
     }
   
+    .course-image {
+        max-width: 120px;
+        margin: 0 auto 1rem;
+    }
+
     .course-image img {
-      max-width: 120px;
-      margin-bottom: 1rem;
+        margin-right: 0;
     }
   }
   
