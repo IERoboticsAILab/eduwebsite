@@ -14,6 +14,9 @@
                         {% else %}
                             {{ course.title }}
                         {% endif %}
+                        {% if course.syllabus %}
+                            <a href="{{ course.syllabus.url }}" target="_blank" class="course-syllabus">(Syllabus)</a>
+                        {% endif %}
                     </h3>
 
                     <p class="course-meta">

@@ -68,6 +68,7 @@ class Course(models.Model):
     period = models.CharField(max_length=200)
     program = models.CharField(max_length=200)
     keywords = models.ManyToManyField(Keyword, blank=True, related_name='courses')
+    syllabus = models.FileField(upload_to='syllabi/', blank=True)
     class Meta:
         ordering = ['-start_year']
 

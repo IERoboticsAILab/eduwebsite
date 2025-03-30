@@ -184,3 +184,13 @@
     margin-top: 0;
   }
   
+  .course-syllabus {
+    color: #007bff !important;
+    text-decoration: none;
+    margin-left: 1rem;
+  }
+
+  .course-syllabus:hover {
+    color: #0056b3 !important;
+  }
+  
