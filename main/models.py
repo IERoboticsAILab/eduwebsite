@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import Q
 from django.utils.text import slugify
 
+
 class IntroText(models.Model):
     text = models.TextField()
     cv_file = models.FileField(upload_to='cv/', blank=True, null=True)
@@ -124,7 +125,7 @@ class ExperienceDescription(models.Model):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"Experience Description"
+        return "Experience Description"
 
 class EducationItem(models.Model):
     title = models.CharField(max_length=200)
