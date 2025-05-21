@@ -48,11 +48,16 @@
 .cal-embed-container {
     margin-top: 2rem;
     padding: 1rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .cal-inline-widget {
     min-width: 320px;
     border-radius: 8px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .location-icon {
@@ -243,8 +248,29 @@
         font-size: 0.9rem;
     }
     
+    .cal-embed-container {
+        padding: 0;
+    }
+    
     .cal-inline-widget {
         min-height: 500px !important;
+        width: 100% !important;
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    /* Fix for Cal.com embedded widget on mobile */
+    .cal-embed-container iframe,
+    .cal-inline-widget iframe {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto;
+        height: 500px !important;
+    }
+    
+    .calendar-section {
+        margin-top: 2rem;
     }
 }
 
@@ -312,4 +338,9 @@
     flex-direction: column;
     align-items: center;
     color: #666;
+}
+
+.calendar-section {
+    margin-top: 3rem;
+    width: 100%;
 }

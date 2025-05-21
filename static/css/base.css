@@ -315,6 +315,12 @@ body.menu-open {
         border-bottom: 1px solid #eee;
         font-size: 1.2rem;
         transition: color 0.2s ease;
+        color: black !important; /* Always black regardless of scroll state */
+    }
+
+    /* Override scrolled state color for mobile menu links */
+    .scrolled.main-nav a {
+        color: black !important;
     }
 
     .main-nav a:hover,
