@@ -15,6 +15,7 @@
             const hamburger = document.querySelector('.hamburger');
             let isMobile = window.matchMedia("(max-width: 768px)").matches;
             let menuOpen = false;
+            let scrollPosition = 0;
 
             function handleScroll() {
                 if (menuOpen) {
@@ -41,11 +42,19 @@
                 menuOpen = !menuOpen;
                 hamburger.classList.toggle('active');
                 nav.classList.toggle('active');
-                document.body.classList.toggle('menu-open');
                 
-                // When opening menu, ensure it has fixed-nav class
                 if (menuOpen) {
+                    // When opening menu, save current scroll position
+                    scrollPosition = window.pageYOffset;
+                    document.body.classList.add('menu-open');
+                    document.body.style.top = `-${scrollPosition}px`;
+                    // When opening menu, ensure it has fixed-nav class
                     nav.classList.add('fixed-nav');
+                } else {
+                    // When closing menu, restore scroll position
+                    document.body.classList.remove('menu-open');
+                    document.body.style.top = '';
+                    window.scrollTo(0, scrollPosition);
                 }
             }
 
@@ -54,10 +63,14 @@
             // Close menu when clicking a link
             document.querySelectorAll('.main-nav a').forEach(link => {
                 link.addEventListener('click', () => {
-                    menuOpen = false;
-                    hamburger.classList.remove('active');
-                    nav.classList.remove('active');
-                    document.body.classList.remove('menu-open');
+                    if (menuOpen) {
+                        menuOpen = false;
+                        hamburger.classList.remove('active');
+                        nav.classList.remove('active');
+                        document.body.classList.remove('menu-open');
+                        document.body.style.top = '';
+                        window.scrollTo(0, scrollPosition);
+                    }
                 });
             });
 
@@ -73,6 +86,8 @@
                     hamburger.classList.remove('active');
                     nav.classList.remove('active');
                     document.body.classList.remove('menu-open');
+                    document.body.style.top = '';
+                    window.scrollTo(0, scrollPosition);
                 }
             });
         });
