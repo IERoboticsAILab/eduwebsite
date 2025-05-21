@@ -21,6 +21,7 @@
 .video-container iframe {
     width: 100%;
     height: 100%;
+    border-radius: 8px;
 }
 
 .video-description h2 {
@@ -33,8 +34,55 @@
     line-height: 1.6;
 }
 
+.talk-meta {
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
 .talk-date {
     margin-bottom: 1rem;
     font-size: 1rem;
     color: #666;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .video-item {
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: none;
+        gap: 15px;
+    }
+    
+    .video-description {
+        margin-top: 0.5rem;
+    }
+    
+    .video-description h2 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .talk-date {
+        margin-bottom: 0.5rem;
+    }
+    
+    .video-list {
+        padding: 0 1rem;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-list {
+        gap: 25px;
+    }
+    
+    .video-item {
+        gap: 10px;
+    }
+    
+    .video-description h2 {
+        font-size: 1.2rem;
+    }
 }
