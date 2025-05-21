@@ -193,6 +193,79 @@
     .positions-grid {
         grid-template-columns: 1fr;
     }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-container {
+        padding: 1rem;
+    }
+    
+    .map-container {
+        order: 1;
+        margin-bottom: 2rem;
+        height: 300px;
+    }
+    
+    .school-container {
+        order: 2;
+        height: auto;
+        min-height: 350px;
+        padding: 1.5rem;
+    }
+    
+    .school-logo {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .location-title {
+        font-size: 1.25rem;
+        margin-top: 1.5rem;
+    }
+    
+    .open-positions-section h1,
+    .calendar-section h1 {
+        font-size: 1.5rem;
+    }
+    
+    .position-card {
+        padding: 1.5rem;
+    }
+    
+    .position-card h2 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .address-text {
+        font-size: 0.9rem;
+    }
+    
+    .cal-inline-widget {
+        min-height: 500px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .map-container {
+        height: 250px;
+    }
+    
+    .school-container {
+        padding: 1rem;
+    }
+    
+    .address-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .address-text {
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
 }
 
 .deadline-container {
