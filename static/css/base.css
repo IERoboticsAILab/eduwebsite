@@ -4,6 +4,13 @@ body {
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+    box-sizing: border-box;
+}
+
+/* Force all elements to inherit box-sizing */
+*, *:before, *:after {
+    box-sizing: inherit;
 }
 
 /* Top bar */
@@ -216,4 +223,136 @@ header {
 
 .active {
     font-weight: 1000;
+}
+
+/* Hamburger menu button */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+    background: none;
+    border: none;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Body state when mobile menu is open */
+body.menu-open {
+    overflow: hidden; /* Prevent scrolling when menu is open */
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+/* Mobile navigation styles */
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: block;
+        position: fixed;
+        top: 15px;
+        z-index: 2000;
+    }
+
+    .hamburger.scrolled span {
+        background-color: black;
+    }
+    
+    /* When menu is open, keep hamburger color consistent regardless of scroll position */
+    .hamburger.active span {
+        background-color: black;
+    }
+
+    .main-nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.98);
+        padding: 60px 20px 40px;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        z-index: 1500;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        transition: all 0.3s ease-in-out;
+    }
+
+    .main-nav.active {
+        display: flex !important; /* Force display regardless of other styles */
+        position: fixed !important; /* Force fixed position */
+    }
+
+    .main-nav a {
+        padding: 15px 0;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+        font-size: 1.2rem;
+        transition: color 0.2s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a:active {
+        color: #000;
+        font-weight: bold;
+    }
+    
+    .main-nav a.active {
+        font-weight: bold;
+        border-bottom: 2px solid #000;
+    }
+
+    /* Make site title smaller on mobile */
+    .site-title {
+        padding: 15px;
+    }
+
+    .site-title h1 {
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    
+    /* General mobile adjustments */
+    main {
+        padding: 0 15px;
+        margin: 20px auto;
+    }
+    
+    .fixed-nav + main {
+        padding-top: 0;
+    }
+    
+    .chevron-header h1 {
+        font-size: 1.8rem;
+        padding-right: 40px;
+    }
 }

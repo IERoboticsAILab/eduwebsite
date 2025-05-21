@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Personal Site{% endblock %}</title>
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
@@ -9,24 +11,80 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const nav = document.querySelector('.main-nav');
-            const navTop = nav.offsetTop;  // Get initial position of nav
+            const navTop = nav.offsetTop;
+            const hamburger = document.querySelector('.hamburger');
+            let isMobile = window.matchMedia("(max-width: 768px)").matches;
+            let menuOpen = false;
 
             function handleScroll() {
+                if (menuOpen) {
+                    // Don't change fixed-nav classes if menu is open
+                    return;
+                }
+                
                 if (window.scrollY > navTop) {
                     nav.classList.add('fixed-nav');
                     nav.classList.add('scrolled');
+                    if (isMobile) {
+                        hamburger.classList.add('scrolled');
+                    }
                 } else {
                     nav.classList.remove('fixed-nav');
                     nav.classList.remove('scrolled');
+                    if (isMobile) {
+                        hamburger.classList.remove('scrolled');
+                    }
                 }
             }
 
+            function toggleMenu() {
+                menuOpen = !menuOpen;
+                hamburger.classList.toggle('active');
+                nav.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
+                
+                // When opening menu, ensure it has fixed-nav class
+                if (menuOpen) {
+                    nav.classList.add('fixed-nav');
+                }
+            }
+
+            hamburger.addEventListener('click', toggleMenu);
+
+            // Close menu when clicking a link
+            document.querySelectorAll('.main-nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuOpen = false;
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                });
+            });
+
             window.addEventListener('scroll', handleScroll);
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                isMobile = window.matchMedia("(max-width: 768px)").matches;
+                
+                // If screen size changes to desktop while menu is open, reset menu state
+                if (!isMobile && menuOpen) {
+                    menuOpen = false;
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                }
+            });
         });
     </script>
 </head>
 <body>
     <header>
+        <button class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <div class="site-title" style="background-image: url('{% if site_settings.banner_image %}{{ site_settings.banner_image.url }}{% else %}{% static 'images/grey_dark_banner.jpg' %}{% endif %}');
             background-size: contain;
             background-position: center;

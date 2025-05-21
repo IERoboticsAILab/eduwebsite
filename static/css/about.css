@@ -85,16 +85,35 @@
   }
 
   .profile-image {
-      max-width: 400px;
+      max-width: 280px;
       margin: 0 auto;
   }
 
+  .headshot {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+  }
+
   .about-header h1 {
-      font-size: 2rem;
+      font-size: 1.8rem;
   }
 
   .position-title {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
+  }
+
+  .profile-text h1 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+  }
+
+  .profile-text p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+  }
+
+  .profile-links {
+      gap: 0.4rem;
   }
 }
 
