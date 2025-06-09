@@ -1,6 +1,6 @@
 # Personal Website
 
-A personal website built with Django, featuring a blog, portfolio, and internationalization support.
+A personal portfolio website built with Django.
 
 ## 🚀 Local Development Setup
 
