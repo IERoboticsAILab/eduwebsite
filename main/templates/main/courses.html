@@ -1,12 +1,56 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
+{% load jsonld_tags %}
+
+{% block meta_description %}Courses taught by {{ site_settings.title }}. Academic teaching in technology, Human-Computer Interaction, and related fields.{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Courses taught by {{ site_settings.title|jsonld_escape }}",
+  "description": "Academic courses and teaching",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {% for course in courses %}
+      {
+        "@type": "ListItem",
+        "position": {{ forloop.counter }},
+        "item": {
+          "@type": "Course",
+          "name": "{{ course.title|jsonld_escape }}",
+          "description": "{{ course.description|jsonld_escape|truncatechars:300 }}",
+          "provider": {
+            "@type": "EducationalOrganization",
+            "name": "{{ course.program|jsonld_escape }}"
+          },
+          "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "onsite",
+            "startDate": "{{ course.start_year }}",
+            "endDate": "{{ course.end_year }}"
+          },
+          "instructor": {
+            "@type": "Person",
+            "name": "{{ site_settings.title|jsonld_escape }}"
+          }
+        }
+      }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+}
+</script>
+{% endblock %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/courses.css' %}">
 {% endblock %}
 
-{% block title %}Courses{% endblock %}
+{% block title %}Teaching | {{ site_settings.title }}{% endblock %}
 
 {% block content %}
 

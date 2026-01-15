@@ -1,10 +1,52 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load jsonld_tags %}
+
+{% block meta_description %}Academic talks and presentations by {{ site_settings.title }}. Video recordings of lectures and conference presentations.{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Talks by {{ site_settings.title|jsonld_escape }}",
+  "description": "Academic presentations and talks",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {% for talk in talks %}
+      {
+        "@type": "ListItem",
+        "position": {{ forloop.counter }},
+        "item": {
+          "@type": "VideoObject",
+          "name": "{{ talk.title|jsonld_escape }}",
+          "description": "{{ talk.description|jsonld_escape|truncatechars:300 }}",
+          "embedUrl": "{{ talk.video_url }}"{% if talk.date %},
+          "uploadDate": "{{ talk.date|date:'Y-m-d' }}"{% endif %}{% if talk.location %},
+          "contentLocation": {
+            "@type": "Place",
+            "name": "{{ talk.location|jsonld_escape }}"
+          }{% endif %}{% if talk.language %},
+          "inLanguage": "{{ talk.language }}"{% endif %},
+          "creator": {
+            "@type": "Person",
+            "name": "{{ site_settings.title|jsonld_escape }}"
+          }
+        }
+      }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+}
+</script>
+{% endblock %}
+
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/talks.css' %}">
 {% endblock %}
 
-{% block title %}Talks{% endblock %}
+{% block title %}Talks | {{ site_settings.title }}{% endblock %}
 
 {% block content %}
     <div class="talks-content">

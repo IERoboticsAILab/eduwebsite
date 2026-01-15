@@ -1,11 +1,37 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load markdown_extras %}
+{% load jsonld_tags %}
+
+{% block meta_description %}{{ site_settings.title }} - {{ site_settings.subtitle }}. Academic researcher specializing in Human-Computer Interaction.{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "mainEntity": {
+    "@type": "Person",
+    "@id": "{{ request.scheme }}://{{ request.get_host }}/#person",
+    "name": "{{ site_settings.title|jsonld_escape }}",
+    "jobTitle": "{{ site_settings.subtitle|jsonld_escape }}",
+    "url": "{{ request.build_absolute_uri }}",
+    {% if intro_text.email %}"email": "{{ intro_text.email }}",{% endif %}
+    "sameAs": [
+      {% if intro_text.linkedin_url %}"{{ intro_text.linkedin_url }}"{% if intro_text.scholar_url or intro_text.cyphy_url %},{% endif %}{% endif %}
+      {% if intro_text.scholar_url %}"{{ intro_text.scholar_url }}"{% if intro_text.cyphy_url %},{% endif %}{% endif %}
+      {% if intro_text.cyphy_url %}"{{ intro_text.cyphy_url }}"{% endif %}
+    ]
+  }
+}
+</script>
+{% endblock %}
+
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/about.css' %}">
 {% endblock %}
 
-{% block title %}About{% endblock %}
+{% block title %}{{ site_settings.title }} | {{ site_settings.subtitle }}{% endblock %}
 
 {% block content %}
     <div class="about-content">

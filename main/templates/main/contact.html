@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load markdown_extras %}
-{% block title %}Contact{% endblock %}
+{% block title %}Contact | {{ site_settings.title }}{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/contact.css' %}">
 {% endblock %}

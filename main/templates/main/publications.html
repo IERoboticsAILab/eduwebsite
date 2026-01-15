@@ -1,12 +1,55 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
+{% load jsonld_tags %}
+
+{% block meta_description %}Academic publications by {{ site_settings.title }}. Research papers in Human-Computer Interaction, robotics, and interactive systems.{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Publications by {{ site_settings.title|jsonld_escape }}",
+  "description": "Academic publications and research papers",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {% for publication in publications %}
+      {
+        "@type": "ListItem",
+        "position": {{ forloop.counter }},
+        "item": {
+          "@type": "ScholarlyArticle",
+          "headline": "{{ publication.title|jsonld_escape }}",
+          "author": "{{ publication.authors|jsonld_escape }}",
+          "datePublished": "{{ publication.publication_date|date:'Y-m-d' }}",
+          "publisher": {
+            "@type": "Organization",
+            "name": "{{ publication.journal|jsonld_escape }}"
+          },
+          "abstract": "{{ publication.abstract|jsonld_escape|truncatechars:300 }}"{% if publication.doi %},
+          "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "DOI",
+            "value": "{{ publication.doi }}"
+          },
+          "url": "https://doi.org/{{ publication.doi }}"{% elif publication.link %},
+          "url": "{{ publication.link }}"{% endif %}
+        }
+      }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+}
+</script>
+{% endblock %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/publications.css' %}">
 {% endblock %}
 
-{% block title %}Publications{% endblock %}
+{% block title %}Publications | {{ site_settings.title }}{% endblock %}
 
 {% block content %}
 <div class="searchparams">

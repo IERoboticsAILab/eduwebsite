@@ -1,11 +1,39 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load jsonld_tags %}
+
+{% block meta_description %}{{ project.title }} - {{ project.description|truncatechars:150 }}{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ResearchProject",
+  "name": "{{ project.title|jsonld_escape }}",
+  "description": "{{ project.description|jsonld_escape|truncatechars:500 }}",
+  "dateCreated": "{{ project.date|date:'Y-m-d' }}",
+  "url": "{{ request.build_absolute_uri }}",
+  "creator": {
+    "@type": "Person",
+    "name": "{{ site_settings.title|jsonld_escape }}",
+    "@id": "{{ request.scheme }}://{{ request.get_host }}/#person"
+  }{% if project.image %},
+  "image": "{{ request.scheme }}://{{ request.get_host }}{{ project.image.url }}"{% endif %}{% if project.github_link %},
+  "codeRepository": "{{ project.github_link }}"{% endif %}{% if project.video_url %},
+  "video": {
+    "@type": "VideoObject",
+    "embedUrl": "{{ project.video_url }}",
+    "name": "{{ project.title|jsonld_escape }}"
+  }{% endif %}
+}
+</script>
+{% endblock %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/project_detail.css' %}">
 {% endblock %}
 
-{% block title %}{{ project.title }}{% endblock %}
+{% block title %}{{ project.title }} | {{ site_settings.title }}{% endblock %}
 
 {% block content %}
     {% if project.image %}

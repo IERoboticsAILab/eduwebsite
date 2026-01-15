@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My Personal Site{% endblock %}</title>
+    <title>{% block title %}{{ site_settings.title }}{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Academic portfolio of Eduardo Castello Ferrer - research, publications, and projects in Human-Computer Interaction.{% endblock %}">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    {% block structured_data %}{% endblock %}
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% block extra_css %}{% endblock %}
@@ -129,7 +132,7 @@
     </main>
 
     <footer>
-        <p>© {% now "Y" %} Eduardo Castello</p>
+        <p>© {% now "Y" %} Eduardo Castello Ferrer</p>
     </footer>
     {% block extra_js %}{% endblock %}
 </body>

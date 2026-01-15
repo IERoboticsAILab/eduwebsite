@@ -1,12 +1,48 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load jsonld_tags %}
+
+{% block meta_description %}{{ research_line.title }} - {{ research_line.description|truncatechars:150 }}{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ResearchProject",
+  "name": "{{ research_line.title|jsonld_escape }}",
+  "description": "{{ research_line.description|jsonld_escape|truncatechars:500 }}",
+  {% if research_line.date %}"dateCreated": "{{ research_line.date|date:'Y-m-d' }}",{% endif %}
+  "url": "{{ request.build_absolute_uri }}",
+  "creator": {
+    "@type": "Person",
+    "name": "{{ site_settings.title|jsonld_escape }}",
+    "@id": "{{ request.scheme }}://{{ request.get_host }}/#person"
+  }{% if research_line.image %},
+  "image": "{{ request.scheme }}://{{ request.get_host }}{{ research_line.image.url }}"{% endif %}{% if research_line.video_url %},
+  "video": {
+    "@type": "VideoObject",
+    "embedUrl": "{{ research_line.video_url }}",
+    "name": "{{ research_line.title|jsonld_escape }}"
+  }{% endif %}{% if research_line.projects.exists %},
+  "hasPart": [
+    {% for project in research_line.projects.all %}
+    {
+      "@type": "ResearchProject",
+      "name": "{{ project.title|jsonld_escape }}",
+      "url": "{{ request.scheme }}://{{ request.get_host }}{% url 'project_detail' project.slug %}"
+    }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+  ]{% endif %}
+}
+</script>
+{% endblock %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/project_detail.css' %}">
   <link rel="stylesheet" href="{% static 'css/projects.css' %}">
 {% endblock %}
 
-{% block title %}{{ research_line.title }}{% endblock %}
+{% block title %}{{ research_line.title }} | {{ site_settings.title }}{% endblock %}
 
 {% block content %}
     {% if research_line.image %}

@@ -1,12 +1,42 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load markdown_extras %}
+{% load jsonld_tags %}
+
+{% block meta_description %}Professional experience and education of {{ site_settings.title }}. Academic career, research positions, and educational background.{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "{{ request.scheme }}://{{ request.get_host }}/#person",
+  "name": "{{ site_settings.title|jsonld_escape }}",
+  "alumniOf": [
+    {% for item in education_items %}
+    {
+      "@type": "EducationalOrganization",
+      "name": "{{ item.institution|jsonld_escape }}"
+    }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+  ],
+  "worksFor": [
+    {% for item in work_items %}
+    {
+      "@type": "Organization",
+      "name": "{{ item.institution|jsonld_escape }}"
+    }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/experience.css' %}">
 {% endblock %}
 
-{% block title %}Experience{% endblock %}
+{% block title %}Experience | {{ site_settings.title }}{% endblock %}
 
 {% block content %}
     <div class="experience-container">
